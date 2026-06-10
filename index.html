@@ -3,1365 +3,785 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jaskaran Bhatia - Data Scientist / ML Engineer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Jaskaran Singh — Senior Machine Learning Engineer</title>
+  <meta name="description"
+    content="Senior Machine Learning Engineer at J-Squared Technologies. Edge AI, LLM inference, agentic systems and computer vision — from custom CUDA kernels to production AWS deployments.">
+  <meta name="theme-color" content="#07080d">
 
-  <!--
-    - favicon
-  -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Jaskaran Singh — Senior Machine Learning Engineer">
+  <meta property="og:description"
+    content="Edge AI · LLM Inferencing · RAG · Agentic AI · Computer Vision · NLP · AWS">
+  <meta property="og:url" content="https://thejaskaranbhatia.com">
+  <meta property="og:image" content="https://thejaskaranbhatia.com/assets/images/my-avatar.png">
+
   <link rel="shortcut icon" href="/assets/images/logo.ico" type="image/x-icon">
 
-  <!--
-    - custom css link
-  -->
-  <link rel="stylesheet" href="/assets/css/style.css">
-
-  <!--
-    - google font link
-  -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js" } }
+  </script>
 </head>
 
-<body>
+<body id="top">
 
-  <!--
-    - #MAIN
-  -->
+  <!-- ambient gradient field behind everything -->
+  <div class="ambient" aria-hidden="true">
+    <div class="blob blob-a"></div>
+    <div class="blob blob-b"></div>
+    <div class="blob blob-c"></div>
+  </div>
+
+  <!-- floating glass dock -->
+  <nav class="dock glass" aria-label="Primary">
+    <a class="dock-brand" href="#top">
+      <img class="mark-img" src="/assets/images/my-avatar.png" alt="Jaskaran Singh">
+      <span>Jaskaran</span>
+    </a>
+
+    <a class="dock-link active" href="#top">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5V21a1 1 0 0 1-1 1h-5v-7h-6v7H4a1 1 0 0 1-1-1Z"/></svg>
+      <span>Home</span>
+    </a>
+    <a class="dock-link" href="/blog.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+      <span>Blog</span>
+    </a>
+    <a class="dock-link" href="#experience">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+      <span>Work</span>
+    </a>
+    <a class="dock-link" href="#projects">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+      <span>Projects</span>
+    </a>
+    <a class="dock-link" href="#contact">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m22 7-10 6L2 7"/></svg>
+      <span>Contact</span>
+    </a>
+
+    <button class="theme-btn" data-theme-toggle aria-label="Toggle theme">
+      <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
+      <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    </button>
+  </nav>
 
   <main>
 
-    <!--
-      - #SIDEBAR
-    -->
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+      <canvas id="hero-canvas" aria-hidden="true"></canvas>
 
-    <aside class="sidebar" data-sidebar>
+      <div class="wrap">
+        <div class="hero-card glass reveal in">
+          <div class="hero-layout">
+            <div class="hero-copy">
+              <span class="hero-eyebrow">Senior ML Engineer @ J-Squared Technologies · Toronto</span>
 
-      <div class="sidebar-info">
+              <h1>Jaskaran Singh <span class="grad-text">I make AI run anywhere.</span></h1>
 
-        <figure class="avatar-box">
-          <img src="./assets/images/my-avatar.png" alt="Richard hanrick" width="80">
-        </figure>
+              <p class="tagline">
+                Machine Learning Engineer with a Software Engineer's backbone. I take models from
+                research papers to production: Agentic Pipelines, LLM Inference, and Computer Vision
+                that ships on real hardware for real clients.
+              </p>
 
-        <div class="info-content">
-          <h1 class="name" title="Richard hanrick">Jaskaran Bhatia</h1>
-
-          <p class="title">Data Scientist <b>/</b> ML Engineer</p>
-        </div>
-
-        <button class="info_more-btn" data-sidebar-btn>
-          <span>Show Contact Info</span>
-
-          <ion-icon name="chevron-down"></ion-icon>
-        </button>
-
-      </div>
-
-      <div class="sidebar-info_more">
-
-        <div class="separator"></div>
-
-        <ul class="contacts-list">
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="mail-outline"></ion-icon>
+              <div class="hero-domains">
+                <span class="chip chip-tonal">Edge AI</span>
+                <span class="chip chip-tonal">LLM Inferencing</span>
+                <span class="chip chip-tonal">Agentic AI</span>
+                <span class="chip chip-tonal">Computer Vision</span>
+                <span class="chip chip-tonal">Full-Stack</span>
+                <span class="chip chip-tonal">AWS</span>
+              </div>
             </div>
 
-            <div class="contact-info">
-              <p class="contact-title">Email</p>
-
-              <a href="mailto:thejaskaranbhatia@gmail.com" class="contact-link">thejaskaranbhatia@gmail.com</a>
-            </div>
-
-          </li>
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="phone-portrait-outline"></ion-icon>
-            </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Phone</p>
-
-              <a href="#" class="contact-link">+1 (xxx) xxx-xxxx</a>
-            </div>
-
-          </li>
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="calendar-outline"></ion-icon>
-            </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Birthday</p>
-
-              <time datetime="1982-06-23">July 22, 1999</time>
-            </div>
-
-          </li>
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="location-outline"></ion-icon>
-            </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Location</p>
-
-              <address>Toronto, Ontario, Canada</address>
-            </div>
-
-          </li>
-
-        </ul>
-
-        <div class="separator"></div>
-
-        <ul class="social-list">
-
-          <li class="social-item">
-            <a href="#" class="social-link">
-              <ion-icon name="logo-facebook"></ion-icon>
-            </a>
-          </li>
-
-          <li class="social-item">
-            <a href="#" class="social-link">
-              <ion-icon name="logo-twitter"></ion-icon>
-            </a>
-          </li>
-
-          <li class="social-item">
-            <a href="#" class="social-link">
-              <ion-icon name="logo-instagram"></ion-icon>
-            </a>
-          </li>
-
-        </ul>
-
-      </div>
-
-    </aside>
-
-
-
-
-
-    <!--
-      - #main-content
-    -->
-
-    <div class="main-content">
-
-      <!--
-        - #NAVBAR
-      -->
-
-      <nav class="navbar">
-
-        <ul class="navbar-list">
-
-          <li class="navbar-item">
-            <button class="navbar-link  active" data-nav-link>About</button>
-          </li>
-
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Resume</button>
-          </li>
-
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Projects</button>
-          </li>
-
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Blog</button>
-          </li>
-
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Contact</button>
-          </li>
-
-        </ul>
-
-      </nav>
-
-
-
-
-
-      <!--
-        - #ABOUT
-      -->
-
-      <article class="about  active" data-page="about">
-
-        <header>
-          <h2 class="h2 article-title">About me</h2>
-        </header>
-
-        <section class="about-text">
-          <p>
-            Welcome to my  <span class="highlight-color">professional space</span>!<br/><br/> I am a  <span class="highlight-color">Machine Learning Engineer</span> at J-Squared Technologies, where my expertise in  <span class="highlight-color">computer vision</span> and  <span class="highlight-color">edge computing</span> is driving innovation across various sectors including Retail, Mining, and Military applications. My academic journey at the  <span class="highlight-color">University of Toronto</span>, culminating in a Master’s degree, has equipped me with a profound understanding and skills in AI including the fields of both Vision and Language. 
-          </p>
-          <p>
-            In addition, my professional background encompasses extensive experience within FinTech, product-based companies, and dynamic startups. With an unwavering passion for <span class="highlight-color">Computer Vision and NLP</span>, I love tackling complex problems. My extensive knowledge in <span class="highlight-color">Algorithms and Data Structures</span> naturally complements these interests, paving the way for impactful solutions.
-          </p>
-        </section>
-
-
-        <!--
-          - service
-        -->
-
-        <section class="service">
-
-          <h3 class="h3 service-title">What i'm doing</h3>
-
-          <ul class="service-list">
-
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <img src="./assets/images/icon-design.png
-                " alt="design icon" width="40">
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Computer Vision</h4>
-
-                <p class="service-item-text">
-                  Generative AI, VAEs, GANs, Diffusion Models, ViTs, Object Detection/Tracking, Segmentation, Face Detection/Recognition, Re-ID
-                </p>
-              </div>
-
-            </li>
-
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <img src="./assets/images/icon-dev.png" alt="Web development icon" width="40">
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Natural Language Computing</h4>
-
-                <p class="service-item-text">
-                  LLMs, GPT, BERT, BARD, Transformers, Encoder-Decoder, Text Summarization, NER, Neural Machine Translation, Sentiment Analysis
-                </p>
-              </div>
-
-            </li>
-
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <img src="./assets/images/icon-app.png" alt="mobile app icon" width="40">
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Data Structure & Algorithms</h4>
-
-                <p class="service-item-text">
-                  Passionate about solving complex problems, expertise in Graph Theory, Dynamic Programming, Algorithmic Optimization
-                </p>
-              </div>
-
-            </li>
-
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <img src="./assets/images/icon-photo.png" alt="camera icon" width="40">
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Software Development</h4>
-
-                <p class="service-item-text">
-                  Expertise in Full-Stack Development with experience in working across the SDLC from ideation to deployment.
-                </p>
-              </div>
-
-            </li>
-
-          </ul>
-
-        </section>
-
-
-        <!--
-          - testimonials
-        -->
-
-        <section class="testimonials">
-
-          <h3 class="h3 testimonials-title">Recent Pre-prints & Publications</h3>
-
-          <ul class="testimonials-list has-scrollbar">
-
-            <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item>
-
-                <span class="testimonials-avatar-box">
-                  <img src="./assets/images/pdf-icon.png" alt="Emily evans" data-testimonials-avatar>
-                </span>
-
-                <h4 class="h5 testimonials-item-title" data-testimonials-title>Performance Analysis of LLMs for Medical Text Summarization</h4>
-
-                <div class="testimonials-text" data-testimonials-text>
-                  <h4 class="h5"><u>Abstract</u></h4>
-                  <p>
-                    Due to the rapid expansion of medical literature, keeping pace with the latest research and clinical guidelines has become more challenging for healthcare professionals. To overcome this challenge, effective text summarization is crucial for improving access to knowledge, enhancing clinical decision-making, and ultimately benefiting patient outcomes. In this study, a medical text summarization system that employs large language models (LLMs) was fine-tuned and evaluated with the objective of generating precise, logical, and brief summaries of medical literature, emphasizing clinical relevance and ease of understanding. We plan to evaluate the performance of GPT3, GPT4 and the fine-tuned T5, BART, and Pegasus models trained on the standard PubMed dataset using standard evaluation metrics.<br/><br/> <a href="https://osf.io/kn5f2/" target="__blank__"><button class="btn_preprint">Link</button></a>
-                  </p>
-                </div>
-
-              </div>
-            </li>
-
-            <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item>
-
-                <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/pdf-icon.png" alt="Emily evans" data-testimonials-avatar>
-                </figure>
-
-                <h4 class="h5 testimonials-item-title" data-testimonials-title>Medical Image Enhancement using GANs Architecture</h4>
-
-                <div class="testimonials-text" data-testimonials-text>
-                  <h4 class="h5"><u>Abstract</u></h4>
-                  <p>
-                    Medical Imaging is used by radiologists for diagnostic purposes and to check for abnormalities, and these imaging techniques involve radiation. Overexposure to radiation can have an adverse impact on the human body, and using less radiation gives us a noisy output. Hence, radiologists find it difficult as there is a trade-off between the amount of radiation that can be used and the quality of the image. Moreover, noise in medical images can occur due to fluctuation of photons, a reflection of radiations from the subject, or due to instrumental vibration or faults. The proposed approach is a pipeline which starts with denoising using GANs architecture, in which two models have been trained, one for handling all kinds of noise and the second one specifically for Poisson noise. Further, post-processing methods like single-shot HDR using Retinex Filtering and Edge Enhancement using unsharp masking have been done to get a structurally more similar and enhanced denoised image. <br/><br/> <a href="https://osf.io/8nvxy/" target="__blank__"><button class="btn_preprint">Link</button></a>
-                  </p>
-                </div>
-
-              </div>
-            </li>
-
-            <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item>
-
-                <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/pdf-icon.png" alt="Emily evans" data-testimonials-avatar>
-                </figure>
-
-                <h4 class="h5 testimonials-item-title" data-testimonials-title>Empirical Study of Supervised and Active Learning Methodologies</h4>
-
-                <div class="testimonials-text" data-testimonials-text>
-                  <h4 class="h5"><u>Abstract</u></h4>
-                  <p>
-                    Document classification is one of the predominant tasks in Machine Learning, that by and large involves the use of supervised methodologies to determine most suitable categories for a given set of documents. In this project, we seek to conduct an empirical study, that, in addition to the conventional machine learning methods, experiments with active learning and semi-supervised methods for assorting a mix of labelled and unlabelled computer science scholarly articles hosted on the arXiV repository. We develop a solution using the gathered labelled data points, by experimenting with various multi-class supervised learning models such as K Nearest Neighbours, Naive Bayes, Random Forest, and Logistic Regression. We also account for the issue of class imbalance, and thus conduct experiments to determine a suitable oversampling methodology for addressing this concern. Lastly, we extend beyond the conventional machine learning classification methods to incorporate the concept of active learning, a type of iterative supervised learning, used when the unlabelled data is in abundance.<br/><br/> <a href="https://osf.io/8nvxy/" target="__blank__"><button class="btn_preprint">Link</button></a>
-                  </p>
-                </div>
-
-              </div>
-            </li>
-          </ul>
-
-        </section>
-
-
-        <!--
-          - testimonials modal
-        -->
-
-        <div class="modal-container" data-modal-container>
-
-          <div class="overlay" data-overlay></div>
-
-          <section class="testimonials-modal">
-
-            <button class="modal-close-btn" data-modal-close-btn>
-              <ion-icon name="close-outline"></ion-icon>
-            </button>
-
-            <div class="modal-img-wrapper">
-              <figure class="modal-avatar-box">
-                <img src="./assets/images/avatar-1.png" alt="Daniel lewis" width="80" data-modal-img>
-              </figure>
-
-              <img src="./assets/images/icon-quote.svg" alt="quote icon">
-            </div>
-
-            <div class="modal-content">
-
-              <h4 class="h3 modal-title" data-modal-title>Daniel lewis</h4>
-
-              <time datetime="2021-06-14">14 June, 2021</time>
-
-              <div data-modal-text>
-                <p>
-                  Richard was hired to create a corporate identity. We were very pleased with the work done. She has a
-                  lot of experience
-                  and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt
-                  consectetur adipiscing
-                  elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia.
-                </p>
-              </div>
-
-            </div>
-
-          </section>
-
-        </div>
-
-
-        <!--
-          - clients
-        -->
-
-        <section class="clients">
-
-          <h3 class="h3 clients-title">Recent Blogs</h3>
-
-          <ul class="clients-list has-scrollbar">
-
-            <li class="blog-post-item">
-              <a href="https://medium.com/@jaskaranbhatia/summarizing-the-evolution-of-diffusion-models-insights-from-three-research-papers-6889339eba4" target="__blank__">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-1.jpg" alt="Design conferences in 2022" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Generative AI</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Jul 13, 2023</time>
-                  </div>
-
-                  <h3 class="h4 blog-item-title">Summarizing the Evolution of Diffusion Models: Insights from Three Research Papers</h3>
-
-                  <p class="blog-text">
-                    In the world of machine learning, generative models have been making waves with their ability ...
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="https://medium.com/@jaskaranbhatia/understanding-vision-transformers-a-new-era-in-image-recognition-with-pytorch-128ab43cfa9d" target="__blank__">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-2.jpg" alt="Design conferences in 2022" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Computer Vision</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Jul 10, 2023</time>
-                  </div>
-
-                  <h3 class="h4 blog-item-title">Understanding Vision Transformers: A New Era in Image Recognition with PyTorch</h3>
-
-                  <p class="blog-text">
-                    In the ever-evolving landscape of artificial intelligence, the Transformer model has been ...
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-          </ul>
-
-
-
-        </section>
-
-      </article>
-
-
-
-
-
-      <!--
-        - #RESUME
-      -->
-
-      <article class="resume" data-page="resume">
-
-        <header>
-          <h2 class="h2 article-title">Resume</h2>
-        </header>
-
-        <section class="timeline">
-
-          <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="book-outline"></ion-icon>
-            </div>
-
-            <h3 class="h3">Education</h3>
+            <figure class="hero-avatar" aria-hidden="false">
+              <img src="/assets/images/present.jpeg" alt="Jaskaran Singh presenting at an AI conference" width="280" height="350">
+              <figcaption class="hero-avatar-badge">Speaking at AI conferences</figcaption>
+            </figure>
           </div>
 
-          <ol class="timeline-list">
+          <div class="hero-cta">
+            <a class="btn btn-filled" href="#projects">
+              See my work
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn-glass" href="/assets/Jaskaran_Singh_Resume.pdf" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4m4-5 5 5 5-5m-5 5V3"/></svg>
+              Résumé
+            </a>
 
-            <li class="timeline-item">
-        
-              <h4 class="h4 timeline-item-title">University of Toronto</h4>
-        
-              <span>MScAC (Master of Science in Applied Computing), Sept 2022 - Dec 2023</span>
-        
-              <p class="timeline-text">
-                Courses: Intro. to Machine Learning, Computational Imaging, Deep Learning & Neural Networks, Natural Language Computing
-              </p>
-        
-            </li>
-        
-            <li class="timeline-item">
-        
-              <h4 class="h4 timeline-item-title">Thapar Institute of Engineering & Technology, Patiala</h4>
-        
-              <span>B.E Computer Engineering (CGPA: 9.55), 2018 - 2022</span>
-        
-              <p class="timeline-text">
-                Relevant Courses: Machine Learning, AI Applications (NLP, CV & IOT), Data Science, Building Innovative Systems, Probability and Statistics
-              </p>
-        
-            </li>
-        
-          </ol>
-
-        </section>
-
-        <section class="timeline">
-
-          <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="book-outline"></ion-icon>
+            <div class="hero-social">
+              <a class="icon-btn" href="https://github.com/jaskaranbhatia" target="_blank" rel="noopener" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.42c.58.1.79-.25.79-.55v-2.15c-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.18 1.77 1.18 1.03 1.77 2.7 1.26 3.36.96.1-.74.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.16-1.18 3.16-1.18.63 1.59.24 2.76.12 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.7 5.38-5.27 5.66.41.36.78 1.05.78 2.13v3.16c0 .3.2.66.8.55A11.5 11.5 0 0 0 12 .5Z"/></svg>
+              </a>
+              <a class="icon-btn" href="https://linkedin.com/in/jaskaran-bhatia" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0Z"/></svg>
+              </a>
+              <a class="icon-btn" href="https://medium.com/@jaskaranbhatia" target="_blank" rel="noopener" aria-label="Medium">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 0 1-6.77 6.82A6.8 6.8 0 0 1 0 12a6.8 6.8 0 0 1 6.77-6.82A6.8 6.8 0 0 1 13.54 12Zm7.42 0c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.87 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75S24 8.83 24 12Z"/></svg>
+              </a>
             </div>
-
-            <h3 class="h3">Experience</h3>
           </div>
 
-          <ol class="timeline-list">
+          <div class="hero-stats" data-stagger>
+            <div class="stat glass reveal in">
+              <div class="num grad-text">4+ years</div>
+              <div class="lbl">Production software &amp; ML engineering</div>
+            </div>
+            <div class="stat glass reveal in">
+              <div class="num grad-text">JP Morgan Alum</div>
+              <div class="lbl">Fintech-grade engineering discipline</div>
+            </div>
+            <div class="stat glass reveal in">
+              <div class="num grad-text">UofT MScAC</div>
+              <div class="lbl">Master's in Applied Computing</div>
+            </div>
+            <div class="stat glass reveal in">
+              <div class="num grad-text">CANSEC 2026</div>
+              <div class="lbl">Speaker · FalconVeo video RAG</div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-            <li class="timeline-item">
+      <div class="scroll-hint" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+    </section>
 
-              <h4 class="h4 timeline-item-title">ML Engineer, J-Squared Technologies</h4>
-        
-              <span>May, 2023 - Present</span>
-              <p class="timeline-text">
-                ● Working on CV-based solutions including Re-Identification, Pose Estimation, Face Detection/Recognition, Tracking, and Activity Recognition.<br/>
-                ● Train SOTA models such as GenAI, ViTs, and CNNs, and deploy them on edge devices like Jetsons, HAILO, Blaize, Untether, and MemoryX.<br/>
-                ● Utilize Jetsons, Triton Inference Server, and TensorRT for deployment, and create plugins using PyCUDA and TensorRT.<br/>
-                ● Optimize models for hardware using techniques like quantization, pruning, distillation, and graph surgery.<br/>
-                ● Working on MLOps using MLFlow + Jenkins Integration for maintaining, training, testing and deploying the models.<br/>
-              </p>
-        
-            </li>
+    <!-- ================= ABOUT ================= -->
+    <section id="about">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">About</span>
+          <h2 class="section-title">Engineer first, <span class="grad-text">researcher close second.</span></h2>
+        </div>
 
-            <li class="timeline-item">
-        
-              <h4 class="h4 timeline-item-title">Teaching Assistant, University of Toronto</h4>
-        
-              <span>Sept 2022 - April 2023</span>
-              <p class="timeline-text">
-                ● CSC373H1S Algorithm Design, Analysis & Complexity (Jan 2023 - April 2023)<br>
-                ● CSC263H1F Data Structures and Analysis (Sept 2022 - Dec 2022)<br>
-                ● Led tutorial sessions to a class of 45 students.
-              </p>
-        
-            </li>
-        
-            <li class="timeline-item">
-        
-              <h4 class="h4 timeline-item-title">Software Engineer, JP Morgan Chase</h4>
-        
-              <span>Jan 2022 - August 2022 (Software Engineer Intern from Jan 22 - June 22)</span>
-              <p class="timeline-text">
-                ● Worked on migration of a project related to microservices from Angular to React.js and developed APIs using .NET Core.<br>
-                ● Migration increased business as user engagement grew by 10%<br>
-                ● Won team recognition award for the business growth achieved
-              </p>
-        
-            </li>
-        
-            <li class="timeline-item">
-        
-              <h4 class="h4 timeline-item-title">SDE Intern, InterviewBit (Scaler)</h4>
-        
-              <span>July 2021 - Jan 2022</span>
-              <p class="timeline-text">
-                ● Worked on React.js, Ruby on Rails, SQL & AWS<br>
-                ● Revamped the Referral Dashboard, which nearly doubled the rate of referrals received. Also, developed new APIs, newsletter dashboard, and widgets
-              </p>
-        
-            </li>
-        
-            <li class="timeline-item">
-        
-              <h4 class="h4 timeline-item-title">Teaching Assistant, Coding Ninjas</h4>
-        
-              <span>Apr 2021 - Jun 2021</span>
-              <p class="timeline-text">
-                ● Solved queries related to Data Structures and Algorithms
-              </p>
-        
-            </li>
-        
-            <li class="timeline-item">
-        
-              <h4 class="h4 timeline-item-title">Software Developer Intern, KlearCard Singapore</h4>
-        
-              <span>May 2020 - Jul 2020</span>
-              <p class="timeline-text">
-                ● Flutter Mobile Application Developer, worked solo on a project and directly reported to the CTO<br>
-                ● Worked on implementation of authentication, card management, and transaction history
-              </p>
-        
-            </li>
-        
-          </ol>
+        <div class="about-grid">
+          <div class="about-text-card glass reveal">
+            <p>
+              I'm a Senior Machine Learning Engineer at <strong>J-Squared Technologies</strong>, where I take AI
+              from research papers to rugged hardware — designing agentic data-generation pipelines, building
+              privacy-preserving video RAG, and optimizing vision models until they hit single-digit-millisecond
+              budgets on NVIDIA Jetson and Hailo-8 for clients across the retail-mining, manufacturing and
+              defence sectors.
+            </p>
+            <p>
+              Before that I shipped customer-facing microservices at <strong>JP Morgan Chase</strong> and growth
+              tooling at <strong>Scaler</strong>, so I'm equally at home in React, .NET and Rails as I am in
+              CUDA and Rust. I did my master's in Applied Computing at the
+              <strong>University of Toronto</strong> with a perfect 4.0, and I write about ML systems on
+              <a class="grad-text" href="https://medium.com/@jaskaranbhatia" target="_blank" rel="noopener"><strong>Medium</strong></a>.
+            </p>
+            <p>
+              The thread through all of it: I like making powerful models <strong>small, fast and local</strong> —
+              and building the systems engineering around them that turns a demo into a product.
+            </p>
+          </div>
 
-        </section>
-
-        <section class="skill">
-
-          <h3 class="h3 skills-title">My skills</h3>
-
-          <ul class="skills-list content-card">
-
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">PyTorch</h5>
-                <data value="85">85%</data>
+          <div class="about-side" data-stagger>
+            <div class="edu-card glass reveal">
+              <div class="edu-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 9-10-5L2 9l10 5 10-5Z"/><path d="M6 11.5V17c0 1.66 2.69 3 6 3s6-1.34 6-3v-5.5"/><path d="M22 9v6"/></svg>
               </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 85%;"></div>
+              <div>
+                <h3>University of Toronto</h3>
+                <p class="deg">MSc in Applied Computing (MScAC) — Computer Science</p>
+                <p class="meta">2022 – 2023 · GPA 4.0 / 4.0 · A+ in ML, Deep Learning, NLP &amp; Computational Imaging</p>
               </div>
-            </li>
-        
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">Tensorflow</h5>
-                <data value="75">75%</data>
+            </div>
+
+            <div class="edu-card glass reveal">
+              <div class="edu-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 9-10-5L2 9l10 5 10-5Z"/><path d="M6 11.5V17c0 1.66 2.69 3 6 3s6-1.34 6-3v-5.5"/><path d="M22 9v6"/></svg>
               </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 75%;"></div>
+              <div>
+                <h3>Thapar Institute of Engineering &amp; Technology</h3>
+                <p class="deg">B.E. in Computer Engineering</p>
+                <p class="meta">2018 – 2022 · GPA 9.55 / 10</p>
               </div>
-            </li>
-        
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">OpenCV</h5>
-                <data value="80">80%</data>
+            </div>
+          </div>
+        </div>
+
+        <div class="focus-grid" data-stagger>
+          <div class="focus-card glass reveal">
+            <div class="f-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3m6-3v3M9 20v3m6-3v3M1 9h3m-3 6h3m16-6h3m-3 6h3"/></svg>
+            </div>
+            <h3>Edge AI &amp; Model Optimization</h3>
+            <p>Quantization (PTQ + QAT), pruning, distillation and custom CUDA / TensorRT kernels — detection,
+              segmentation, re-ID and pose models meeting sub-5&nbsp;ms budgets on Jetson and Hailo-8.</p>
+          </div>
+
+          <div class="focus-card glass reveal">
+            <div class="f-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4.4 4.4 0 0 0-4.4 4.4c0 .6.1 1.1.3 1.6A4.4 4.4 0 0 0 5 12a4.4 4.4 0 0 0 1.6 8.5 4.4 4.4 0 0 0 8.7.9 4.4 4.4 0 0 0 5.6-4.2 4.4 4.4 0 0 0-1-7.8 4.4 4.4 0 0 0-7.9-7.4Z"/><path d="M12 6v12m-3.5-9.5L12 11l3.5-2.5"/></svg>
+            </div>
+            <h3>LLM Systems &amp; Agentic AI</h3>
+            <p>RAG over knowledge graphs, MCP servers for real tools, multi-agent annotation workflows, and
+              local quantized inference — Ollama, Candle (Rust), vLLM, TensorRT-LLM.</p>
+          </div>
+
+          <div class="focus-card glass reveal">
+            <div class="f-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 8.5 5v10L12 22l-8.5-5V7L12 2Z"/><path d="M12 22V12m8.5-5L12 12 3.5 7"/></svg>
+            </div>
+            <h3>Full-Stack ML Engineering</h3>
+            <p>Lock-free C++ IPC backbones, Rust inference services, REST APIs, React frontends and AWS
+              architecture — the production plumbing that makes models actually usable.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= WRITING ================= -->
+    <section id="writing">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Writing</span>
+          <h2 class="section-title">Latest from the <span class="grad-text">blog.</span></h2>
+          <p class="section-sub">Deep dives on ML systems, edge AI and computer vision — published on Medium.</p>
+        </div>
+
+        <div class="blog-grid" data-stagger>
+          <a class="post-card glass reveal" href="/post.html?id=rust-vs-python">
+            <div class="post-media">
+              <img src="https://cdn-images-1.medium.com/max/1024/1*PVe70bcizhKhH7nBKhiaWw.png" alt="Rust vs Python for LLM inference" loading="lazy" referrerpolicy="no-referrer">
+              <span class="m-badge">Medium</span>
+            </div>
+            <div class="post-body">
+              <div class="post-meta"><span>May 2026</span><span class="dot"></span><span>Rust · LLMs</span></div>
+              <h3>Rust vs Python for LLM Inference: I Benchmarked Everything So You Don't Have To</h3>
+              <span class="post-read">Read article
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></span>
+            </div>
+          </a>
+
+          <a class="post-card glass reveal" href="/post.html?id=on-device-slms">
+            <div class="post-media">
+              <img src="https://cdn-images-1.medium.com/max/1024/1*XlNNnuuD8xa4rYol1podxw.png" alt="On-device AI and SLMs" loading="lazy" referrerpolicy="no-referrer">
+              <span class="m-badge">Medium</span>
+            </div>
+            <div class="post-body">
+              <div class="post-meta"><span>Sep 2024</span><span class="dot"></span><span>Edge AI</span></div>
+              <h3>The Rise of On-Device AI Processing and SLMs</h3>
+              <span class="post-read">Read article
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></span>
+            </div>
+          </a>
+
+          <a class="post-card glass reveal" href="/post.html?id=ai-accelerators">
+            <div class="post-media">
+              <img src="https://cdn-images-1.medium.com/max/1024/1*wb9ButHlXUe0mcwGwOazyw.png" alt="AI accelerators" loading="lazy" referrerpolicy="no-referrer">
+              <span class="m-badge">Medium</span>
+            </div>
+            <div class="post-body">
+              <div class="post-meta"><span>Sep 2023</span><span class="dot"></span><span>Hardware</span></div>
+              <h3>AI Accelerators: Tracing the Past, Understanding the Present, and Forecasting the Future</h3>
+              <span class="post-read">Read article
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></span>
+            </div>
+          </a>
+        </div>
+
+        <div class="proj-more reveal">
+          <a class="btn btn-filled" href="/blog.html">
+            All articles
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn-glass" href="https://medium.com/@jaskaranbhatia" target="_blank" rel="noopener">Follow on Medium</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= EXPERIENCE ================= -->
+    <section id="experience">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Experience</span>
+          <h2 class="section-title">Where I've <span class="grad-text">shipped.</span></h2>
+        </div>
+
+        <div class="timeline" data-stagger>
+          <article class="xp-card glass reveal">
+            <div class="xp-head">
+              <div>
+                <h3>J-Squared Technologies</h3>
+                <p class="role">Senior Machine Learning Engineer</p>
               </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 80%;"></div>
-              </div>
-            </li>
-        
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">HuggingFace</h5>
-                <data value="75">75%</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 75%;"></div>
-              </div>
-            </li>
-        
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">Flask / Django</h5>
-                <data value="80">80%</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 80%;"></div>
-              </div>
-            </li>
-        
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">React.js & Node.js</h5>
-                <data value="70">70%</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 70%;"></div>
-              </div>
-            </li>
-        
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">SQL</h5>
-                <data value="90">90%</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 90%;"></div>
-              </div>
-            </li>
-        
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">MongoDB</h5>
-                <data value="65">65%</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 65%;"></div>
-              </div>
-            </li>
-        
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">Azure Cloud for ML</h5>
-                <data value="75">75%</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 75%;"></div>
-              </div>
-            </li>
-        
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">AWS Cloud</h5>
-                <data value="65">65%</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 65%;"></div>
-              </div>
-            </li>
-        
-          </ul>
-        
-        </section>
-
-      </article>
-
-
-
-
-
-      <!--
-        - #PORTFOLIO
-      -->
-
-      <article class="portfolio" data-page="projects">
-
-        <header>
-          <h2 class="h2 article-title">Projects</h2>
-        </header>
-
-        <section class="projects">
-
-          <ul class="filter-list">
-
-            <li class="filter-item">
-              <button class="active" data-filter-btn>All</button>
-            </li>
-
-            <li class="filter-item">
-              <button data-filter-btn>Computer Vision</button>
-            </li>
-
-            <li class="filter-item">
-              <button data-filter-btn>NLP</button>
-            </li>
-
-            <li class="filter-item">
-              <button data-filter-btn>Data Analysis</button>
-            </li>
-
-            <li class="filter-item">
-              <button data-filter-btn>Software Development</button>
-            </li>
-
-          </ul>
-
-          <div class="filter-select-box">
-
-            <button class="filter-select" data-select>
-
-              <div class="select-value" data-selecct-value>Select category</div>
-
-              <div class="select-icon">
-                <ion-icon name="chevron-down"></ion-icon>
-              </div>
-
-            </button>
-
-            <ul class="select-list">
-
-              <li class="select-item">
-                <button data-select-item>All</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>Computer Vision</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>NLP</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>Data Analysis</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>Software Development</button>
-              </li>
-
+              <span class="dates">May 2023 — Present</span>
+            </div>
+            <ul>
+              <li><strong>Agentic annotation at scale</strong> — combined diffusion models, Grounding DINO + SAM,
+                and LLM decision agents (Llama&nbsp;3.2-3B, Phi-3) into an autonomous generation-and-annotation
+                workflow: 100K+ samples produced, manual labeling cut by 90%.</li>
+              <li><strong>FalconVeo, agentic video RAG</strong> — on-device video search (CLIP + MS-TEMBA +
+                Qwen3.5-VL) for privacy-preserving industrial clip retrieval; presenting at
+                <strong>CANSEC 2026</strong>, one of the world's largest defence conferences.</li>
+              <li><strong>Sprint-summarization RAG</strong> — Notion ingestion via MCP, Neo4j knowledge-graph
+                reasoning, and GPT-OSS-20B served locally through Ollama (native MXFP4); cross-team reporting
+                went from 2+ hours to under 30 minutes.</li>
+              <li><strong>Vivado-MCP</strong> — internal MCP server exposing 67 Xilinx Vivado TCL tools to local
+                LLMs, powering AI-driven HDL, testbench and constraint generation for the FPGA team — fully
+                on-device.</li>
+              <li><strong>GPU kernel &amp; model optimization</strong> — PTQ + QAT, pruning, distillation and
+                custom CUDA / TensorRT kernels across detection, segmentation, re-ID and pose; sub-5&nbsp;ms
+                latency on Hailo-8 and Jetson for retail-mining, manufacturing and defence clients.</li>
+              <li><strong>Systems work</strong> — lock-free shared-memory ring buffer in C++ powering 4×
+                concurrent-stream vision inference on Jetson AGX at &lt;25&nbsp;ms end-to-end, and a
+                memory-optimized Rust LLM inference service (Candle + Actix-Web) with 2× faster cold starts
+                than Python baselines.</li>
             </ul>
+            <div class="chip-row xp-chips">
+              <span class="chip">PyTorch</span><span class="chip">CUDA</span><span class="chip">TensorRT</span>
+              <span class="chip">Rust</span><span class="chip">C++</span><span class="chip">Ollama</span>
+              <span class="chip">MCP</span><span class="chip">Neo4j</span><span class="chip">Jetson · Hailo-8</span>
+            </div>
+          </article>
 
+          <article class="xp-card glass reveal">
+            <div class="xp-head">
+              <div>
+                <h3>JP Morgan Chase</h3>
+                <p class="role">Software Engineer</p>
+              </div>
+              <span class="dates">Jan 2022 — Aug 2022</span>
+            </div>
+            <ul>
+              <li>Migrated customer-facing CIB microservices from Angular to React (Hooks + Redux); A/B-tested
+                rollout drove +10% engagement and faster page loads, earning a team recognition award.</li>
+              <li>Designed and shipped .NET Core REST APIs for production financial transaction workflows,
+                hardened with rate limiting, URL escaping, CORS and CSRF protection.</li>
+            </ul>
+            <div class="chip-row xp-chips">
+              <span class="chip">React</span><span class="chip">Redux</span><span class="chip">.NET Core</span>
+              <span class="chip">Microservices</span>
+            </div>
+          </article>
+
+          <article class="xp-card glass reveal">
+            <div class="xp-head">
+              <div>
+                <h3>Scaler Academy</h3>
+                <p class="role">Software Development Engineer Intern</p>
+              </div>
+              <span class="dates">Jul 2021 — Dec 2021</span>
+            </div>
+            <ul>
+              <li>Rebuilt the referral and newsletter dashboards plus embeddable marketing widgets in React;
+                the redesigned referral flow doubled the conversion rate.</li>
+              <li>Built Rails REST APIs and ActiveRecord models for referral tracking and growth analytics,
+                with SQL migrations and Jenkins CI/CD on AWS.</li>
+            </ul>
+            <div class="chip-row xp-chips">
+              <span class="chip">React</span><span class="chip">Ruby on Rails</span><span class="chip">AWS</span>
+              <span class="chip">Jenkins</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROJECTS ================= -->
+    <section id="projects">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Projects</span>
+          <h2 class="section-title">Selected <span class="grad-text">builds.</span></h2>
+          <p class="section-sub">Research projects, production systems and the occasional hackathon artifact —
+            most with code on GitHub.</p>
+        </div>
+
+        <div class="proj-grid" data-stagger>
+
+          <article class="proj-card glass reveal" data-tilt>
+            <div class="proj-media proj-media-grad">
+              <span class="wordmark">fragivo</span>
+              <span class="live-badge">● LIVE</span>
+            </div>
+            <div class="proj-body">
+              <h3>Fragivo — AI Fragrance Platform</h3>
+              <p>LLM- and vision-powered fragrance discovery on AWS: OAuth, Google-Search-grounded analysis,
+                prompt-engineered recommendations.</p>
+              <div class="chip-row"><span class="chip">LLMs</span><span class="chip">AWS</span><span class="chip">RecSys</span></div>
+              <div class="proj-links">
+                <a href="https://fragivo.com" target="_blank" rel="noopener">Visit site
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="proj-card glass reveal" data-tilt>
+            <div class="proj-media"><img src="/assets/images/project-1.jpg" alt="Medical text summarization" loading="lazy"></div>
+            <div class="proj-body">
+              <h3>LLMs for Medical Text Summarization</h3>
+              <p>Fine-tuned and benchmarked GPT-3/4, T5, BART and Pegasus on medical summarization — ROUGE,
+                BERTScore and inference cost head-to-head. Published as a preprint.</p>
+              <div class="chip-row"><span class="chip">LLMs</span><span class="chip">NLP</span><span class="chip">Benchmarking</span></div>
+              <div class="proj-links">
+                <a href="https://osf.io/kn5f2/" target="_blank" rel="noopener">Preprint
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
+                <a href="https://github.com/jaskaranbhatia/Medical_Text_Summarization_using_LLMs" target="_blank" rel="noopener">Code
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="proj-card glass reveal" data-tilt>
+            <div class="proj-media"><img src="/assets/images/project-2.jpeg" alt="Medical image enhancement using GANs" loading="lazy"></div>
+            <div class="proj-body">
+              <h3>MedGANs — Medical Image Enhancement</h3>
+              <p>End-to-end GAN pipeline for medical image denoising and enhancement — published in IJESE
+                (2025) with single-shot HDR and edge-enhancement post-processing.</p>
+              <div class="chip-row"><span class="chip">GANs</span><span class="chip">Imaging</span><span class="chip">Published</span></div>
+              <div class="proj-links">
+                <a href="https://doi.org/10.35940/ijese.E7430.13030225" target="_blank" rel="noopener">Paper
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
+                <a href="https://github.com/jaskaranbhatia/MedGANs" target="_blank" rel="noopener">Code
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="proj-card glass reveal" data-tilt>
+            <div class="proj-media"><img src="/assets/images/project-4.png" alt="Active learning research paper classification" loading="lazy"></div>
+            <div class="proj-body">
+              <h3>Active Learning for Paper Classification</h3>
+              <p>Supervised + active + semi-supervised learning to classify mixed labeled/unlabeled research
+                papers with minimal annotation budget.</p>
+              <div class="chip-row"><span class="chip">Active Learning</span><span class="chip">NLP</span></div>
+              <div class="proj-links">
+                <a href="https://osf.io/8nvxy/" target="_blank" rel="noopener">Preprint
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
+                <a href="https://github.com/jaskaranbhatia/Active-Learning-based-Research-Paper-Classification" target="_blank" rel="noopener">Code
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="proj-card glass reveal" data-tilt>
+            <div class="proj-media"><img src="/assets/images/project-3.jpeg" alt="Cassava leaf disease prediction" loading="lazy"></div>
+            <div class="proj-body">
+              <h3>Cassava Leaf Disease Prediction</h3>
+              <p>Deep-learning classifier identifying viral diseases from cassava leaf photos — computer vision
+                for low-resource agriculture.</p>
+              <div class="chip-row"><span class="chip">CV</span><span class="chip">CNNs</span></div>
+              <div class="proj-links">
+                <a href="https://github.com/jaskaranbhatia/Cassava-Leaf-Disease-Prediction" target="_blank" rel="noopener">Code
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="proj-card glass reveal" data-tilt>
+            <div class="proj-media"><img src="/assets/images/project-5.png" alt="Disaster response pipeline" loading="lazy"></div>
+            <div class="proj-body">
+              <h3>Disaster Response Pipeline</h3>
+              <p>Production-grade ETL + ML pipeline classifying real disaster messages in real time, served
+                behind an API.</p>
+              <div class="chip-row"><span class="chip">NLP</span><span class="chip">Data Engineering</span></div>
+              <div class="proj-links">
+                <a href="https://github.com/jaskaranbhatia/Disaster-Response-Pipelines" target="_blank" rel="noopener">Code
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="proj-card glass reveal" data-tilt>
+            <div class="proj-media"><img src="/assets/images/project-8.png" alt="Plagiarism detection" loading="lazy"></div>
+            <div class="proj-body">
+              <h3>Plagiarism Detection</h3>
+              <p>Binary classifier scoring text similarity against source documents using containment and
+                LCS features, deployed on SageMaker.</p>
+              <div class="chip-row"><span class="chip">ML</span><span class="chip">SageMaker</span></div>
+              <div class="proj-links">
+                <a href="https://github.com/jaskaranbhatia/Plagiarism_Detection_ML" target="_blank" rel="noopener">Code
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="proj-card glass reveal" data-tilt>
+            <div class="proj-media"><img src="/assets/images/project-12.png" alt="Recommendation engine" loading="lazy"></div>
+            <div class="proj-body">
+              <h3>Recommendation Engine</h3>
+              <p>Rank-based, collaborative-filtering and SVD recommenders built on IBM Watson Studio
+                interaction data.</p>
+              <div class="chip-row"><span class="chip">RecSys</span><span class="chip">SVD</span></div>
+              <div class="proj-links">
+                <a href="https://github.com/jaskaranbhatia/Recommendation-Engine" target="_blank" rel="noopener">Code
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="proj-card glass reveal" data-tilt>
+            <div class="proj-media"><img src="/assets/images/project-7.jpg" alt="Hate speech detection" loading="lazy"></div>
+            <div class="proj-body">
+              <h3>Hate Speech Detection</h3>
+              <p>NLP classifier flagging racist and hateful tweets — text preprocessing, embeddings and
+                supervised classification on real Twitter data.</p>
+              <div class="chip-row"><span class="chip">NLP</span><span class="chip">Classification</span></div>
+              <div class="proj-links">
+                <a href="https://github.com/jaskaranbhatia/Twitter-Racist-Tweets-Classifier" target="_blank" rel="noopener">Code
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="proj-more reveal">
+          <a class="btn btn-tonal" href="https://github.com/jaskaranbhatia?tab=repositories" target="_blank" rel="noopener">
+            58 more repositories on GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PUBLICATIONS ================= -->
+    <section id="publications">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Research &amp; Speaking</span>
+          <h2 class="section-title">Publications, preprints &amp; <span class="grad-text">talks.</span></h2>
+        </div>
+
+        <div class="pub-list" data-stagger>
+          <article class="pub-card glass reveal">
+            <span class="pub-badge">Journal</span>
+            <div>
+              <h3>An End-to-End Pipeline for Medical Image Enhancement Using GANs Architecture</h3>
+              <p class="venue">Singh, J., Patel, T., &amp; Dankar, A. ·
+                <em>International Journal of Emerging Science and Engineering, Vol. 13(3), pp. 32–39 · 2025</em></p>
+              <div class="pub-links">
+                <a href="https://doi.org/10.35940/ijese.E7430.13030225" target="_blank" rel="noopener">DOI
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
+                <a href="https://github.com/jaskaranbhatia/MedGANs" target="_blank" rel="noopener">GitHub
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="pub-card glass reveal">
+            <span class="pub-badge alt">Preprint</span>
+            <div>
+              <h3>Performance Analysis of LLMs for Medical Text Summarization</h3>
+              <p class="venue"><em>OSF Preprints</em> — GPT-3/4, T5, BART and Pegasus compared on quality
+                (ROUGE / BERTScore) and inference cost.</p>
+              <div class="pub-links">
+                <a href="https://osf.io/kn5f2/" target="_blank" rel="noopener">OSF
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
+                <a href="https://github.com/jaskaranbhatia/Medical_Text_Summarization_using_LLMs" target="_blank" rel="noopener">GitHub
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="pub-card glass reveal">
+            <span class="pub-badge alt">Preprint</span>
+            <div>
+              <h3>Empirical Study of Supervised &amp; Active Learning for Classifying Research Papers</h3>
+              <p class="venue"><em>OSF Preprints</em> — conventional ML combined with active and semi-supervised
+                learning for efficient classification of partially-labeled corpora.</p>
+              <div class="pub-links">
+                <a href="https://osf.io/8nvxy/" target="_blank" rel="noopener">OSF
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
+                <a href="https://github.com/jaskaranbhatia/Active-Learning-based-Research-Paper-Classification" target="_blank" rel="noopener">GitHub
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="pub-card glass reveal">
+            <span class="pub-badge">Speaker · 2026</span>
+            <div>
+              <h3>FalconVeo — Agentic Video RAG for Privacy-Preserving Industrial Clip Retrieval</h3>
+              <p class="venue"><em>CANSEC 2026, Ottawa</em> — presenting J-Squared's on-device video search
+                system (CLIP + MS-TEMBA + Qwen3.5-VL) at one of the world's largest defence &amp; security
+                conferences.</p>
+            </div>
+          </article>
+
+          <article class="pub-card glass reveal">
+            <span class="pub-badge alt">Speaking</span>
+            <div>
+              <h3>Topics I speak and write about</h3>
+              <p class="venue">Edge AI deployment in the real world · LLM inference optimization — quantization,
+                pruning, distillation and custom CUDA/TensorRT kernels · on-device agents and privacy-preserving
+                RAG · Rust vs Python for ML serving.</p>
+              <div class="pub-links">
+                <a href="mailto:thejaskaranbhatia@gmail.com?subject=Speaking%20invitation">Invite me to speak
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PHOTOS ================= -->
+    <section id="photos">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Photos</span>
+          <h2 class="section-title">On stage &amp; on the <span class="grad-text">demo floor.</span></h2>
+          <p class="section-sub">Moments from conferences and showcases — presenting Edge AI and LLM work.</p>
+        </div>
+
+        <div class="gallery" data-stagger>
+          <figure class="gallery-item glass reveal">
+            <img src="/assets/images/conference1.jpeg" alt="Jaskaran presenting at a conference" loading="lazy">
+          </figure>
+          <figure class="gallery-item glass reveal">
+            <img src="/assets/images/conference4.jpg" alt="Jaskaran speaking with attendees at a conference" loading="lazy">
+          </figure>
+          <figure class="gallery-item glass reveal">
+            <img src="/assets/images/conference3.jpg" alt="Jaskaran demoing at a conference booth" loading="lazy">
+          </figure>
+          <figure class="gallery-item glass reveal">
+            <img src="/assets/images/conference5.JPG" alt="Jaskaran presenting his work" loading="lazy">
+          </figure>
+          <figure class="gallery-item glass reveal">
+            <img src="/assets/images/conference2.jpeg" alt="Jaskaran in discussion at a conference" loading="lazy">
+          </figure>
+          <figure class="gallery-item glass reveal">
+            <img src="/assets/images/conference6.jpg" alt="Jaskaran at a conference showcase" loading="lazy">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ACHIEVEMENTS ================= -->
+    <section id="achievements">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Credentials</span>
+          <h2 class="section-title">Certifications &amp; <span class="grad-text">achievements.</span></h2>
+        </div>
+
+        <div class="ach-grid" data-stagger>
+          <div class="ach-card glass reveal">
+            <div class="a-head">
+              <div class="a-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13 17 22l-5-3-5 3 1.5-9"/></svg>
+              </div>
+              <h3>AWS Certified ×3</h3>
+            </div>
+            <ul>
+              <li><strong>Machine Learning Engineer</strong></li>
+              <li><strong>AI Practitioner</strong></li>
+              <li><strong>Cloud Practitioner</strong></li>
+            </ul>
           </div>
 
-          <ul class="project-list">
-
-            <li class="project-item  active" data-filter-item data-category="nlp">
-              <a href="https://github.com/jaskaranbhatia/Medical_Text_Summarization_using_LLMs" target="__blank__">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-1.jpg" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Medical Text Summarization using LLMs</h3>
-
-                <p class="project-category">NLP</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="computer vision">
-              <a href="https://github.com/jaskaranbhatia/MedGANs" target="__blank__">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-2.jpeg" alt="orizon" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Medical Image Enhancement using GANs</h3>
-
-                <p class="project-category">Computer Vision</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="computer vision">
-              <a href="https://github.com/jaskaranbhatia/Cassava-Leaf-Disease-Prediction" target="__blank__">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-3.jpeg" alt="fundo" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Cassava Leaf Disease Prediction</h3>
-
-                <p class="project-category">Computer Vision</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="nlp">
-              <a href="https://github.com/jaskaranbhatia/Active-Learning-based-Research-Paper-Classification" target="__blank__">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-4.png" alt="brawlhalla" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Active Learning Based Research Paper Classification</h3>
-
-                <p class="project-category">NLP</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="nlp">
-              <a href="https://github.com/jaskaranbhatia/Disaster-Response-Pipelines" target="__blank__">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-5.png" alt="dsm." loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Disaster Response Pipeline</h3>
-
-                <p class="project-category">NLP</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="software development">
-              <a href="https://github.com/jaskaranbhatia/RealEstate-Price-Prediction" target="__blank__">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-6.jpg" alt="metaspark" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Real Estate Price Prediction</h3>
-
-                <p class="project-category">Software Development</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="nlp">
-              <a href="https://github.com/jaskaranbhatia/Twitter-Racist-Tweets-Classifier" target="__blank__">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-7.jpg" alt="summary" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Hate Speech Sentiment Analysis</h3>
-
-                <p class="project-category">NLP</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="nlp">
-              <a href="https://github.com/jaskaranbhatia/Plagiarism_Detection_ML" target="__blank__">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-8.png" alt="task manager" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Plagiarism Detection</h3>
-
-                <p class="project-category">NLP</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="data analysis">
-              <a href="https://github.com/jaskaranbhatia/Starbucks-Capstone" target="__blank__">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-9.png" alt="arrival" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Starbucks Businees Analysis & ML</h3>
-
-                <p class="project-category">Data Analysis</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="software development">
-              <a href="https://github.com/jaskaranbhatia/Interview-Creation-Portal" target="__blank__">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-10.jpg" alt="arrival" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Interview Creation & Management Portal</h3>
-
-                <p class="project-category">Software Development</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="software development">
-              <a href="https://github.com/jaskaranbhatia/Present-App-EDC-Hack" target="__blank__">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-11.jpg" alt="arrival" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Attendance Management Mobile App</h3>
-
-                <p class="project-category">Software Development</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="data analysis">
-              <a href="https://github.com/jaskaranbhatia/Recommendation-Engine" target="__blank__">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-12.png" alt="arrival" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Recommendation Engine using IBM Dataset</h3>
-
-                <p class="project-category">Data Analysis</p>
-
-              </a>
-            </li>
-
-          </ul>
-
-        </section>
-
-      </article>
-
-
-
-
-
-      <!--
-        - #BLOG
-      -->
-
-      <article class="blog" data-page="blog">
-
-        <header>
-          <h2 class="h2 article-title">Blog</h2>
-        </header>
-
-        <section class="blog-posts">
-
-          <ul class="blog-posts-list">
-
-            <li class="blog-post-item">
-              <a href="https://medium.com/@jaskaranbhatia/the-rise-of-on-device-ai-processing-and-slms-c3770e2f5585" target="__blank__">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-7.png" alt="On-Device AI & SLMs" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Artificial intelligence</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Sept 21, 2024</time>
-                  </div>
-
-                  <h3 class="h4 blog-item-title">The Rise of On-Device AI Processing and SLMs</h3>
-
-                  <p class="blog-text">
-                    The shift from cloud-based AI to on-device processing marks a significant change in...
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="https://medium.com/@jaskaranbhatia/summarizing-the-evolution-of-diffusion-models-insights-from-three-research-papers-6889339eba4" target="__blank__">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-1.jpg" alt="Design conferences in 2022" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Generative AI</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Jul 13, 2023</time>
-                  </div>
-
-                  <h3 class="h4 blog-item-title">Summarizing the Evolution of Diffusion Models: Insights from Three Research Papers</h3>
-
-                  <p class="blog-text">
-                    In the world of machine learning, generative models have been making waves with their ability ...
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="https://medium.com/@jaskaranbhatia/understanding-vision-transformers-a-new-era-in-image-recognition-with-pytorch-128ab43cfa9d" target="__blank__">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-2.jpg" alt="Best fonts every designer" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Computer Vision</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Jul 10, 2023</time>
-                  </div>
-
-                  <h3 class="h4 blog-item-title">Understanding Vision Transformers: A New Era in Image Recognition with PyTorch</h3>
-
-                  <p class="blog-text">
-                    In the ever-evolving landscape of artificial intelligence, the Transformer model has been ...
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="https://medium.com/@jaskaranbhatia/exploring-image-segmentation-techniques-watershed-algorithm-using-opencv-9f73d2bc7c5a" target="__blank__">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-3.jpg" alt="Design digest #80" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Computer Vision</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Jul 15, 2023</time>
-                  </div>
-
-                  <h3 class="h4 blog-item-title">Exploring Image Segmentation Techniques: Watershed Algorithm using OpenCV</h3>
-
-                  <p class="blog-text">
-                    Image segmentation, a fundamental aspect of computer vision, has experienced a massive transformation ...
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="https://medium.com/@jaskaranbhatia/ai-accelerators-tracing-the-past-understanding-the-present-and-forecasting-the-future-8c7fea7b5252" target="__blank__">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-0.jpg" alt="Design conferences in 2022" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Artificial intelligence</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Sept 17, 2023</time>
-                  </div>
-
-                  <h3 class="h4 blog-item-title">AI Accelerators: Tracing the Past, Understanding the Present, and Forecasting the Future</h3>
-
-                  <p class="blog-text">
-                    AI has changed the way we live, and is currently the most hyped up field in computer science. Everyday, some new ...
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="https://medium.com/@jaskaranbhatia/unveiling-the-power-of-thresholding-a-must-learn-technique-for-image-segmentation-9a9fec180229" target="__blank__">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-4.jpg" alt="UI interactions of the week" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Computer Vision</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">May 15, 2023</time>
-                  </div>
-
-                  <h3 class="h4 blog-item-title">Unveiling the Power of Thresholding: A Must-Learn Technique for Image Segmentation</h3>
-
-                  <p class="blog-text">
-                    Image segmentation plays a crucial role in many computer vision tasks. It allows us to identify ...
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="https://medium.com/@jaskaranbhatia/starbucks-capstone-project-predicting-offer-effectiveness-b09174056f9" target="__blank__">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-5.jpg" alt="The forgotten art of spacing" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Data Analysis</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">May 03, 2023</time>
-                  </div>
-
-                  <h3 class="h4 blog-item-title">Starbucks Capstone Project: Predicting offer effectiveness</h3>
-
-                  <p class="blog-text">
-                    The problem to solve is to provide the best offers to each user based on their demographics and their response to previous offers ...
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="https://medium.com/@jaskaranbhatia/what-are-the-most-common-programming-languages-used-in-india-19fdfa65a0cf" target="__blank__">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-6.jpg" alt="Design digest #79" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Data Analysis</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Apr 29, 2020</time>
-                  </div>
-
-                  <h3 class="h4 blog-item-title">What are the most common programming languages used in India?</h3>
-
-                  <p class="blog-text">
-                    With the advancement of new areas in India such as Machine Learning and Data Science, many programming languages ...
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-          </ul>
-
-        </section>
-
-      </article>
-
-
-
-
-
-      <!--
-        - #CONTACT
-      -->
-
-      <article class="contact" data-page="contact">
-
-        <header>
-          <h2 class="h2 article-title">Contact</h2>
-        </header>
-
-        <section class="mapbox" data-mapbox>
-          <figure>
-            <iframe
-              src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=46%20Cecil%20Street+(46%20Cecil%20St.)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
-              width="400" height="300" loading="lazy"></iframe>
-          </figure>
-        </section>
-
-        <section class="contact-form">
-
-          <h3 class="h3 form-title">Contact Form</h3>
-
-          <form action="#" class="form" data-form>
-
-            <div class="input-wrapper">
-              <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
-
-              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
+          <div class="ach-card glass reveal">
+            <div class="a-head">
+              <div class="a-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8m-4-4v4M6 3h12v7a6 6 0 0 1-12 0V3Z"/><path d="M6 6H3a2 2 0 0 0 0 4h3m12-4h3a2 2 0 0 1 0 4h-3"/></svg>
+              </div>
+              <h3>Hackathon Wins</h3>
             </div>
+            <ul>
+              <li><strong>Code For Good</strong> — JP Morgan · Winner</li>
+              <li><strong>Smart India Hackathon</strong> — Runner-up</li>
+              <li><strong>Startup Punjab Hackathon</strong> — Winner</li>
+            </ul>
+          </div>
 
-            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+          <div class="ach-card glass reveal">
+            <div class="a-head">
+              <div class="a-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15Z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>
+              </div>
+              <h3>Udacity Nanodegrees</h3>
+            </div>
+            <ul>
+              <li><strong>Machine Learning Engineer</strong></li>
+              <li><strong>Data Scientist</strong></li>
+              <li><strong>Machine Learning with TensorFlow</strong></li>
+            </ul>
+          </div>
 
-            <button class="form-btn" type="submit" disabled data-form-btn>
-              <ion-icon name="paper-plane"></ion-icon>
-              <span>Send Message</span>
-            </button>
+          <div class="ach-card glass reveal">
+            <div class="a-head">
+              <div class="a-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              </div>
+              <h3>Coursera Specializations</h3>
+            </div>
+            <ul>
+              <li><strong>Deep Learning with PyTorch</strong> — IBM</li>
+              <li><strong>AI in Marketing &amp; Finance</strong> — UPenn</li>
+              <li><strong>NLP</strong> — DeepLearning.AI</li>
+              <li><strong>Algorithmic Toolbox</strong> — UC San Diego</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
-          </form>
+    <!-- ================= CONTACT ================= -->
+    <section id="contact">
+      <div class="wrap">
+        <div class="contact-card glass reveal">
+          <span class="eyebrow">Contact</span>
+          <h2>Let's build something <span class="grad-text">that ships.</span></h2>
+          <p>Whether it's edge AI, agentic systems, or an idea you want a second brain on — my inbox is open.</p>
 
-        </section>
+          <div class="contact-cta">
+            <a class="btn btn-filled" href="mailto:thejaskaranbhatia@gmail.com">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m22 7-10 6L2 7"/></svg>
+              thejaskaranbhatia@gmail.com
+            </a>
+            <a class="btn btn-glass" href="https://linkedin.com/in/jaskaran-bhatia" target="_blank" rel="noopener">Connect on LinkedIn</a>
+          </div>
 
-      </article>
-
-    </div>
+          <div class="contact-meta">
+            <span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Toronto, Ontario, Canada
+            </span>
+            <span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.6 2.81.72A2 2 0 0 1 22 16.92Z"/></svg>
+              +1 (437) 986-0064
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
 
   </main>
 
+  <footer>
+    <div class="wrap">
+      <div class="foot-social">
+        <a class="icon-btn" href="https://github.com/jaskaranbhatia" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.42c.58.1.79-.25.79-.55v-2.15c-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.18 1.77 1.18 1.03 1.77 2.7 1.26 3.36.96.1-.74.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.16-1.18 3.16-1.18.63 1.59.24 2.76.12 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.7 5.38-5.27 5.66.41.36.78 1.05.78 2.13v3.16c0 .3.2.66.8.55A11.5 11.5 0 0 0 12 .5Z"/></svg>
+        </a>
+        <a class="icon-btn" href="https://linkedin.com/in/jaskaran-bhatia" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0Z"/></svg>
+        </a>
+        <a class="icon-btn" href="https://medium.com/@jaskaranbhatia" target="_blank" rel="noopener" aria-label="Medium">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 0 1-6.77 6.82A6.8 6.8 0 0 1 0 12a6.8 6.8 0 0 1 6.77-6.82A6.8 6.8 0 0 1 13.54 12Zm7.42 0c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.87 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75S24 8.83 24 12Z"/></svg>
+        </a>
+      </div>
+      <p>© <span id="year">2026</span> Jaskaran Singh</p>
+    </div>
+  </footer>
 
-
-
-
-
-  <!--
-    - custom js link
-  -->
-  <script src="./assets/js/script.js"></script>
-
-  <!--
-    - ionicon link
-  -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
+  <script src="/assets/js/main.js" defer></script>
+  <script type="module" src="/assets/js/hero-3d.js"></script>
 </body>
 
 </html>

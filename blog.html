@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Writing — Jaskaran Singh</title>
+  <meta name="description"
+    content="Articles by Jaskaran Singh on ML systems, edge AI, LLM inference and computer vision — published on Medium.">
+  <meta name="theme-color" content="#07080d">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Writing — Jaskaran Singh">
+  <meta property="og:description" content="Deep dives on ML systems, edge AI and computer vision.">
+  <meta property="og:url" content="https://thejaskaranbhatia.com/blog.html">
+
+  <link rel="shortcut icon" href="/assets/images/logo.ico" type="image/x-icon">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+
+  <div class="ambient" aria-hidden="true">
+    <div class="blob blob-a"></div>
+    <div class="blob blob-b"></div>
+    <div class="blob blob-c"></div>
+  </div>
+
+  <nav class="dock glass" aria-label="Primary">
+    <a class="dock-brand" href="/">
+      <img class="mark-img" src="/assets/images/my-avatar.png" alt="Jaskaran Singh">
+      <span>Jaskaran</span>
+    </a>
+
+    <a class="dock-link" href="/">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5V21a1 1 0 0 1-1 1h-5v-7h-6v7H4a1 1 0 0 1-1-1Z"/></svg>
+      <span>Home</span>
+    </a>
+    <a class="dock-link active" href="/blog.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+      <span>Blog</span>
+    </a>
+    <a class="dock-link" href="/#experience">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+      <span>Work</span>
+    </a>
+    <a class="dock-link" href="/#projects">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+      <span>Projects</span>
+    </a>
+    <a class="dock-link" href="/#contact">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m22 7-10 6L2 7"/></svg>
+      <span>Contact</span>
+    </a>
+
+    <button class="theme-btn" data-theme-toggle aria-label="Toggle theme">
+      <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
+      <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    </button>
+  </nav>
+
+  <main>
+    <header class="page-hero">
+      <div class="wrap">
+        <div class="reveal in">
+          <span class="eyebrow">Writing</span>
+          <h1>Notes from the <span class="grad-text">edge of inference.</span></h1>
+          <p>Benchmarks, deep dives and explainers on ML systems, edge AI and computer vision.
+            Every article lives on Medium — these cards take you straight there.</p>
+        </div>
+      </div>
+    </header>
+
+    <section style="padding-top: 0;">
+      <div class="wrap">
+        <div class="blog-grid" data-stagger>
+
+          <!-- featured -->
+          <a class="post-card post-featured glass reveal" href="/post.html?id=rust-vs-python">
+            <div class="post-media">
+              <img src="https://cdn-images-1.medium.com/max/1024/1*PVe70bcizhKhH7nBKhiaWw.png" alt="Rust vs Python for LLM inference" loading="eager" referrerpolicy="no-referrer">
+              <span class="m-badge">Latest · Medium</span>
+            </div>
+            <div class="post-body">
+              <div class="post-meta"><span>May 29, 2026</span><span class="dot"></span><span>Rust · LLM Inference</span></div>
+              <h3>Rust vs Python for LLM Inference: I Benchmarked Everything So You Don't Have To</h3>
+              <p class="excerpt">Candle + Actix-Web head-to-head against HuggingFace, vLLM and TensorRT-LLM —
+                P50/P99 latency, cold starts and memory footprint, measured properly.</p>
+              <span class="post-read">Read article
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></span>
+            </div>
+          </a>
+
+          <a class="post-card glass reveal" href="/post.html?id=on-device-slms">
+            <div class="post-media">
+              <img src="https://cdn-images-1.medium.com/max/1024/1*XlNNnuuD8xa4rYol1podxw.png" alt="On-device AI and SLMs" loading="lazy" referrerpolicy="no-referrer">
+              <span class="m-badge">Medium</span>
+            </div>
+            <div class="post-body">
+              <div class="post-meta"><span>Sep 22, 2024</span><span class="dot"></span><span>Edge AI · SLMs</span></div>
+              <h3>The Rise of On-Device AI Processing and SLMs</h3>
+              <span class="post-read">Read article
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></span>
+            </div>
+          </a>
+
+          <a class="post-card glass reveal" href="/post.html?id=ai-accelerators">
+            <div class="post-media">
+              <img src="https://cdn-images-1.medium.com/max/1024/1*wb9ButHlXUe0mcwGwOazyw.png" alt="AI accelerators" loading="lazy" referrerpolicy="no-referrer">
+              <span class="m-badge">Medium</span>
+            </div>
+            <div class="post-body">
+              <div class="post-meta"><span>Sep 17, 2023</span><span class="dot"></span><span>Hardware</span></div>
+              <h3>AI Accelerators: Tracing the Past, Understanding the Present, and Forecasting the Future</h3>
+              <span class="post-read">Read article
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></span>
+            </div>
+          </a>
+
+          <a class="post-card glass reveal" href="/post.html?id=watershed">
+            <div class="post-media">
+              <img src="https://cdn-images-1.medium.com/max/1024/1*pLnqts302WGIHaXWJVIf5w.png" alt="Watershed algorithm segmentation" loading="lazy" referrerpolicy="no-referrer">
+              <span class="m-badge">Medium</span>
+            </div>
+            <div class="post-body">
+              <div class="post-meta"><span>Jul 15, 2023</span><span class="dot"></span><span>CV · OpenCV</span></div>
+              <h3>Exploring Image Segmentation Techniques: Watershed Algorithm using OpenCV</h3>
+              <span class="post-read">Read article
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></span>
+            </div>
+          </a>
+
+          <a class="post-card glass reveal" href="/post.html?id=diffusion-models">
+            <div class="post-media">
+              <img src="https://cdn-images-1.medium.com/max/1024/1*4k3nl-cEmOsh3lmqqrkosA.jpeg" alt="Evolution of diffusion models" loading="lazy" referrerpolicy="no-referrer">
+              <span class="m-badge">Medium</span>
+            </div>
+            <div class="post-body">
+              <div class="post-meta"><span>Jul 13, 2023</span><span class="dot"></span><span>Generative AI</span></div>
+              <h3>Summarizing the Evolution of Diffusion Models: Insights from Three Research Papers</h3>
+              <span class="post-read">Read article
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></span>
+            </div>
+          </a>
+
+          <a class="post-card glass reveal" href="/post.html?id=vision-transformers">
+            <div class="post-media">
+              <img src="https://cdn-images-1.medium.com/max/1024/1*hxtdbKsq5eszf-zxjJA7yA.png" alt="Vision transformers with PyTorch" loading="lazy" referrerpolicy="no-referrer">
+              <span class="m-badge">Medium</span>
+            </div>
+            <div class="post-body">
+              <div class="post-meta"><span>Jul 11, 2023</span><span class="dot"></span><span>CV · Transformers</span></div>
+              <h3>Understanding Vision Transformers: A New Era in Image Recognition with PyTorch</h3>
+              <span class="post-read">Read article
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></span>
+            </div>
+          </a>
+
+          <a class="post-card glass reveal" href="/post.html?id=thresholding">
+            <div class="post-media">
+              <img src="/assets/images/blog-4.jpg" alt="Thresholding for image segmentation" loading="lazy">
+              <span class="m-badge">Medium</span>
+            </div>
+            <div class="post-body">
+              <div class="post-meta"><span>May 15, 2023</span><span class="dot"></span><span>CV · OpenCV</span></div>
+              <h3>Unveiling the Power of Thresholding: A Must-Learn Technique for Image Segmentation</h3>
+              <span class="post-read">Read article
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></span>
+            </div>
+          </a>
+
+          <a class="post-card glass reveal" href="/post.html?id=starbucks">
+            <div class="post-media">
+              <img src="/assets/images/blog-5.jpg" alt="Starbucks offer effectiveness prediction" loading="lazy">
+              <span class="m-badge">Medium</span>
+            </div>
+            <div class="post-body">
+              <div class="post-meta"><span>May 3, 2020</span><span class="dot"></span><span>Data Science</span></div>
+              <h3>Starbucks Capstone Project: Predicting Offer Effectiveness</h3>
+              <span class="post-read">Read article
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></span>
+            </div>
+          </a>
+
+          <a class="post-card glass reveal" href="/post.html?id=india-languages">
+            <div class="post-media">
+              <img src="/assets/images/blog-6.jpg" alt="Most common programming languages in India" loading="lazy">
+              <span class="m-badge">Medium</span>
+            </div>
+            <div class="post-body">
+              <div class="post-meta"><span>Apr 29, 2020</span><span class="dot"></span><span>Data Science</span></div>
+              <h3>What Are the Most Common Programming Languages Used in India?</h3>
+              <span class="post-read">Read article
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></span>
+            </div>
+          </a>
+
+        </div>
+
+        <div class="proj-more reveal">
+          <a class="btn btn-filled" href="https://medium.com/@jaskaranbhatia" target="_blank" rel="noopener">
+            Follow @jaskaranbhatia on Medium
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>© <span id="year">2026</span> Jaskaran Singh · All articles published on Medium</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js" defer></script>
+</body>
+
+</html>
