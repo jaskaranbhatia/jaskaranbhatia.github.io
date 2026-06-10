@@ -38,6 +38,9 @@
     <div class="blob blob-c"></div>
   </div>
 
+  <!-- persistent 3D constellation, floats behind the whole page -->
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
+
   <!-- floating glass dock -->
   <nav class="dock glass" aria-label="Primary">
     <a class="dock-brand" href="#top">
@@ -53,11 +56,11 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
       <span>Blog</span>
     </a>
-    <a class="dock-link" href="#experience">
+    <a class="dock-link" href="/experience.html">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
       <span>Work</span>
     </a>
-    <a class="dock-link" href="#projects">
+    <a class="dock-link" href="/projects.html">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
       <span>Projects</span>
     </a>
@@ -76,8 +79,6 @@
 
     <!-- ================= HERO ================= -->
     <section class="hero">
-      <canvas id="hero-canvas" aria-hidden="true"></canvas>
-
       <div class="wrap">
         <div class="hero-card glass reveal in">
           <div class="hero-layout">
@@ -168,22 +169,16 @@
         <div class="about-grid">
           <div class="about-text-card glass reveal">
             <p>
-              I'm a Senior Machine Learning Engineer at <strong>J-Squared Technologies</strong>, where I take AI
-              from research papers to rugged hardware — designing agentic data-generation pipelines, building
-              privacy-preserving video RAG, and optimizing vision models until they hit single-digit-millisecond
-              budgets on NVIDIA Jetson and Hailo-8 for clients across the retail-mining, manufacturing and
-              defence sectors.
+              I own ML systems <strong>end-to-end</strong>. At <strong>J-Squared Technologies</strong> I've shipped
+              agentic pipelines that cut labeling effort by <strong>90%</strong>, video RAG selected for
+              <strong>CANSEC 2026</strong>, and vision models optimized to <strong>sub-5&nbsp;ms</strong> on edge
+              hardware for defence, manufacturing and retail-mining clients.
             </p>
             <p>
-              Before that I shipped customer-facing microservices at <strong>JP Morgan Chase</strong> and growth
-              tooling at <strong>Scaler</strong>, so I'm equally at home in React, .NET and Rails as I am in
-              CUDA and Rust. I did my master's in Applied Computing at the
-              <strong>University of Toronto</strong> with a perfect 4.0, and I write about ML systems on
-              <a class="grad-text" href="https://medium.com/@jaskaranbhatia" target="_blank" rel="noopener"><strong>Medium</strong></a>.
-            </p>
-            <p>
-              The thread through all of it: I like making powerful models <strong>small, fast and local</strong> —
-              and building the systems engineering around them that turns a demo into a product.
+              Before that: production microservices at <strong>JP Morgan Chase</strong> and a
+              <strong>4.0 GPA</strong> Master's at the <strong>University of Toronto</strong>. A rare combination —
+              equally strong in <strong>CUDA / Rust / C++</strong> systems work and <strong>React / AWS</strong>
+              product work. I'm at my best where models meet production.
             </p>
           </div>
 
@@ -306,87 +301,50 @@
     <!-- ================= EXPERIENCE ================= -->
     <section id="experience">
       <div class="wrap">
-        <div class="section-head reveal">
-          <span class="eyebrow">Experience</span>
-          <h2 class="section-title">Where I've <span class="grad-text">shipped.</span></h2>
+        <div class="section-head head-row reveal">
+          <div>
+            <span class="eyebrow">Experience</span>
+            <h2 class="section-title">Where I've <span class="grad-text">shipped.</span></h2>
+          </div>
+          <a class="head-link" href="/experience.html">Full experience <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
         </div>
 
-        <div class="timeline" data-stagger>
-          <article class="xp-card glass reveal">
-            <div class="xp-head">
-              <div>
-                <h3>J-Squared Technologies</h3>
-                <p class="role">Senior Machine Learning Engineer</p>
-              </div>
-              <span class="dates">May 2023 — Present</span>
+        <div class="peek-grid" data-stagger>
+          <a class="peek-card glass reveal" href="/experience.html">
+            <div class="peek-top">
+              <h3>J-Squared Technologies</h3>
+              <span class="dates">2023 — Now</span>
             </div>
-            <ul>
-              <li><strong>Agentic annotation at scale</strong> — combined diffusion models, Grounding DINO + SAM,
-                and LLM decision agents (Llama&nbsp;3.2-3B, Phi-3) into an autonomous generation-and-annotation
-                workflow: 100K+ samples produced, manual labeling cut by 90%.</li>
-              <li><strong>FalconVeo, agentic video RAG</strong> — on-device video search (CLIP + MS-TEMBA +
-                Qwen3.5-VL) for privacy-preserving industrial clip retrieval; presenting at
-                <strong>CANSEC 2026</strong>, one of the world's largest defence conferences.</li>
-              <li><strong>Sprint-summarization RAG</strong> — Notion ingestion via MCP, Neo4j knowledge-graph
-                reasoning, and GPT-OSS-20B served locally through Ollama (native MXFP4); cross-team reporting
-                went from 2+ hours to under 30 minutes.</li>
-              <li><strong>Vivado-MCP</strong> — internal MCP server exposing 67 Xilinx Vivado TCL tools to local
-                LLMs, powering AI-driven HDL, testbench and constraint generation for the FPGA team — fully
-                on-device.</li>
-              <li><strong>GPU kernel &amp; model optimization</strong> — PTQ + QAT, pruning, distillation and
-                custom CUDA / TensorRT kernels across detection, segmentation, re-ID and pose; sub-5&nbsp;ms
-                latency on Hailo-8 and Jetson for retail-mining, manufacturing and defence clients.</li>
-              <li><strong>Systems work</strong> — lock-free shared-memory ring buffer in C++ powering 4×
-                concurrent-stream vision inference on Jetson AGX at &lt;25&nbsp;ms end-to-end, and a
-                memory-optimized Rust LLM inference service (Candle + Actix-Web) with 2× faster cold starts
-                than Python baselines.</li>
-            </ul>
-            <div class="chip-row xp-chips">
-              <span class="chip">PyTorch</span><span class="chip">CUDA</span><span class="chip">TensorRT</span>
-              <span class="chip">Rust</span><span class="chip">C++</span><span class="chip">Ollama</span>
-              <span class="chip">MCP</span><span class="chip">Neo4j</span><span class="chip">Jetson · Hailo-8</span>
-            </div>
-          </article>
+            <p class="role">Senior Machine Learning Engineer</p>
+            <p class="sum">Agentic annotation at 100K+ sample scale, FalconVeo video RAG headed to CANSEC 2026,
+              and sub-5&nbsp;ms edge inference for defence, manufacturing and retail-mining clients.</p>
+            <div class="chip-row"><span class="chip">Edge AI</span><span class="chip">CUDA</span><span class="chip">Rust</span></div>
+            <span class="peek-more">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+          </a>
 
-          <article class="xp-card glass reveal">
-            <div class="xp-head">
-              <div>
-                <h3>JP Morgan Chase</h3>
-                <p class="role">Software Engineer</p>
-              </div>
-              <span class="dates">Jan 2022 — Aug 2022</span>
+          <a class="peek-card glass reveal" href="/experience.html">
+            <div class="peek-top">
+              <h3>JP Morgan Chase</h3>
+              <span class="dates">2022</span>
             </div>
-            <ul>
-              <li>Migrated customer-facing CIB microservices from Angular to React (Hooks + Redux); A/B-tested
-                rollout drove +10% engagement and faster page loads, earning a team recognition award.</li>
-              <li>Designed and shipped .NET Core REST APIs for production financial transaction workflows,
-                hardened with rate limiting, URL escaping, CORS and CSRF protection.</li>
-            </ul>
-            <div class="chip-row xp-chips">
-              <span class="chip">React</span><span class="chip">Redux</span><span class="chip">.NET Core</span>
-              <span class="chip">Microservices</span>
-            </div>
-          </article>
+            <p class="role">Software Engineer</p>
+            <p class="sum">Migrated customer-facing CIB microservices from Angular to React (+10% engagement) and
+              shipped hardened .NET Core APIs for production financial transactions.</p>
+            <div class="chip-row"><span class="chip">React</span><span class="chip">.NET Core</span></div>
+            <span class="peek-more">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+          </a>
 
-          <article class="xp-card glass reveal">
-            <div class="xp-head">
-              <div>
-                <h3>Scaler Academy</h3>
-                <p class="role">Software Development Engineer Intern</p>
-              </div>
-              <span class="dates">Jul 2021 — Dec 2021</span>
+          <a class="peek-card glass reveal" href="/experience.html">
+            <div class="peek-top">
+              <h3>Scaler Academy</h3>
+              <span class="dates">2021</span>
             </div>
-            <ul>
-              <li>Rebuilt the referral and newsletter dashboards plus embeddable marketing widgets in React;
-                the redesigned referral flow doubled the conversion rate.</li>
-              <li>Built Rails REST APIs and ActiveRecord models for referral tracking and growth analytics,
-                with SQL migrations and Jenkins CI/CD on AWS.</li>
-            </ul>
-            <div class="chip-row xp-chips">
-              <span class="chip">React</span><span class="chip">Ruby on Rails</span><span class="chip">AWS</span>
-              <span class="chip">Jenkins</span>
-            </div>
-          </article>
+            <p class="role">SDE Intern</p>
+            <p class="sum">Rebuilt referral and newsletter dashboards in React with Rails APIs and Jenkins CI/CD
+              on AWS — the redesigned flow doubled referral conversion.</p>
+            <div class="chip-row"><span class="chip">React</span><span class="chip">Rails</span><span class="chip">AWS</span></div>
+            <span class="peek-more">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+          </a>
         </div>
       </div>
     </section>
@@ -394,15 +352,15 @@
     <!-- ================= PROJECTS ================= -->
     <section id="projects">
       <div class="wrap">
-        <div class="section-head reveal">
-          <span class="eyebrow">Projects</span>
-          <h2 class="section-title">Selected <span class="grad-text">builds.</span></h2>
-          <p class="section-sub">Research projects, production systems and the occasional hackathon artifact —
-            most with code on GitHub.</p>
+        <div class="section-head head-row reveal">
+          <div>
+            <span class="eyebrow">Projects</span>
+            <h2 class="section-title">Selected <span class="grad-text">builds.</span></h2>
+          </div>
+          <a class="head-link" href="/projects.html">All projects <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
         </div>
 
         <div class="proj-grid" data-stagger>
-
           <article class="proj-card glass reveal" data-tilt>
             <div class="proj-media proj-media-grad">
               <span class="wordmark">fragivo</span>
@@ -451,100 +409,10 @@
               </div>
             </div>
           </article>
-
-          <article class="proj-card glass reveal" data-tilt>
-            <div class="proj-media"><img src="/assets/images/project-4.png" alt="Active learning research paper classification" loading="lazy"></div>
-            <div class="proj-body">
-              <h3>Active Learning for Paper Classification</h3>
-              <p>Supervised + active + semi-supervised learning to classify mixed labeled/unlabeled research
-                papers with minimal annotation budget.</p>
-              <div class="chip-row"><span class="chip">Active Learning</span><span class="chip">NLP</span></div>
-              <div class="proj-links">
-                <a href="https://osf.io/8nvxy/" target="_blank" rel="noopener">Preprint
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
-                <a href="https://github.com/jaskaranbhatia/Active-Learning-based-Research-Paper-Classification" target="_blank" rel="noopener">Code
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
-              </div>
-            </div>
-          </article>
-
-          <article class="proj-card glass reveal" data-tilt>
-            <div class="proj-media"><img src="/assets/images/project-3.jpeg" alt="Cassava leaf disease prediction" loading="lazy"></div>
-            <div class="proj-body">
-              <h3>Cassava Leaf Disease Prediction</h3>
-              <p>Deep-learning classifier identifying viral diseases from cassava leaf photos — computer vision
-                for low-resource agriculture.</p>
-              <div class="chip-row"><span class="chip">CV</span><span class="chip">CNNs</span></div>
-              <div class="proj-links">
-                <a href="https://github.com/jaskaranbhatia/Cassava-Leaf-Disease-Prediction" target="_blank" rel="noopener">Code
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
-              </div>
-            </div>
-          </article>
-
-          <article class="proj-card glass reveal" data-tilt>
-            <div class="proj-media"><img src="/assets/images/project-5.png" alt="Disaster response pipeline" loading="lazy"></div>
-            <div class="proj-body">
-              <h3>Disaster Response Pipeline</h3>
-              <p>Production-grade ETL + ML pipeline classifying real disaster messages in real time, served
-                behind an API.</p>
-              <div class="chip-row"><span class="chip">NLP</span><span class="chip">Data Engineering</span></div>
-              <div class="proj-links">
-                <a href="https://github.com/jaskaranbhatia/Disaster-Response-Pipelines" target="_blank" rel="noopener">Code
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
-              </div>
-            </div>
-          </article>
-
-          <article class="proj-card glass reveal" data-tilt>
-            <div class="proj-media"><img src="/assets/images/project-8.png" alt="Plagiarism detection" loading="lazy"></div>
-            <div class="proj-body">
-              <h3>Plagiarism Detection</h3>
-              <p>Binary classifier scoring text similarity against source documents using containment and
-                LCS features, deployed on SageMaker.</p>
-              <div class="chip-row"><span class="chip">ML</span><span class="chip">SageMaker</span></div>
-              <div class="proj-links">
-                <a href="https://github.com/jaskaranbhatia/Plagiarism_Detection_ML" target="_blank" rel="noopener">Code
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
-              </div>
-            </div>
-          </article>
-
-          <article class="proj-card glass reveal" data-tilt>
-            <div class="proj-media"><img src="/assets/images/project-12.png" alt="Recommendation engine" loading="lazy"></div>
-            <div class="proj-body">
-              <h3>Recommendation Engine</h3>
-              <p>Rank-based, collaborative-filtering and SVD recommenders built on IBM Watson Studio
-                interaction data.</p>
-              <div class="chip-row"><span class="chip">RecSys</span><span class="chip">SVD</span></div>
-              <div class="proj-links">
-                <a href="https://github.com/jaskaranbhatia/Recommendation-Engine" target="_blank" rel="noopener">Code
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
-              </div>
-            </div>
-          </article>
-
-          <article class="proj-card glass reveal" data-tilt>
-            <div class="proj-media"><img src="/assets/images/project-7.jpg" alt="Hate speech detection" loading="lazy"></div>
-            <div class="proj-body">
-              <h3>Hate Speech Detection</h3>
-              <p>NLP classifier flagging racist and hateful tweets — text preprocessing, embeddings and
-                supervised classification on real Twitter data.</p>
-              <div class="chip-row"><span class="chip">NLP</span><span class="chip">Classification</span></div>
-              <div class="proj-links">
-                <a href="https://github.com/jaskaranbhatia/Twitter-Racist-Tweets-Classifier" target="_blank" rel="noopener">Code
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
-              </div>
-            </div>
-          </article>
-
         </div>
 
         <div class="proj-more reveal">
-          <a class="btn btn-tonal" href="https://github.com/jaskaranbhatia?tab=repositories" target="_blank" rel="noopener">
-            58 more repositories on GitHub
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg>
-          </a>
+          <a class="btn btn-tonal" href="/projects.html">View all 9 projects <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
         </div>
       </div>
     </section>
@@ -552,80 +420,41 @@
     <!-- ================= PUBLICATIONS ================= -->
     <section id="publications">
       <div class="wrap">
-        <div class="section-head reveal">
-          <span class="eyebrow">Research &amp; Speaking</span>
-          <h2 class="section-title">Publications, preprints &amp; <span class="grad-text">talks.</span></h2>
+        <div class="section-head head-row reveal">
+          <div>
+            <span class="eyebrow">Research &amp; Speaking</span>
+            <h2 class="section-title">Publications &amp; <span class="grad-text">talks.</span></h2>
+          </div>
+          <a class="head-link" href="/research.html">All research <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
         </div>
 
         <div class="pub-list" data-stagger>
-          <article class="pub-card glass reveal">
+          <a class="pub-card glass reveal" href="/research.html">
             <span class="pub-badge">Journal</span>
             <div>
               <h3>An End-to-End Pipeline for Medical Image Enhancement Using GANs Architecture</h3>
               <p class="venue">Singh, J., Patel, T., &amp; Dankar, A. ·
-                <em>International Journal of Emerging Science and Engineering, Vol. 13(3), pp. 32–39 · 2025</em></p>
-              <div class="pub-links">
-                <a href="https://doi.org/10.35940/ijese.E7430.13030225" target="_blank" rel="noopener">DOI
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
-                <a href="https://github.com/jaskaranbhatia/MedGANs" target="_blank" rel="noopener">GitHub
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
-              </div>
+                <em>International Journal of Emerging Science and Engineering · 2025</em></p>
+              <span class="peek-more">Details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
             </div>
-          </article>
+          </a>
 
-          <article class="pub-card glass reveal">
-            <span class="pub-badge alt">Preprint</span>
-            <div>
-              <h3>Performance Analysis of LLMs for Medical Text Summarization</h3>
-              <p class="venue"><em>OSF Preprints</em> — GPT-3/4, T5, BART and Pegasus compared on quality
-                (ROUGE / BERTScore) and inference cost.</p>
-              <div class="pub-links">
-                <a href="https://osf.io/kn5f2/" target="_blank" rel="noopener">OSF
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
-                <a href="https://github.com/jaskaranbhatia/Medical_Text_Summarization_using_LLMs" target="_blank" rel="noopener">GitHub
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
-              </div>
-            </div>
-          </article>
-
-          <article class="pub-card glass reveal">
-            <span class="pub-badge alt">Preprint</span>
-            <div>
-              <h3>Empirical Study of Supervised &amp; Active Learning for Classifying Research Papers</h3>
-              <p class="venue"><em>OSF Preprints</em> — conventional ML combined with active and semi-supervised
-                learning for efficient classification of partially-labeled corpora.</p>
-              <div class="pub-links">
-                <a href="https://osf.io/8nvxy/" target="_blank" rel="noopener">OSF
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
-                <a href="https://github.com/jaskaranbhatia/Active-Learning-based-Research-Paper-Classification" target="_blank" rel="noopener">GitHub
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
-              </div>
-            </div>
-          </article>
-
-          <article class="pub-card glass reveal">
+          <a class="pub-card glass reveal" href="/research.html">
             <span class="pub-badge">Speaker · 2026</span>
             <div>
               <h3>FalconVeo — Agentic Video RAG for Privacy-Preserving Industrial Clip Retrieval</h3>
-              <p class="venue"><em>CANSEC 2026, Ottawa</em> — presenting J-Squared's on-device video search
-                system (CLIP + MS-TEMBA + Qwen3.5-VL) at one of the world's largest defence &amp; security
-                conferences.</p>
+              <p class="venue"><em>CANSEC 2026, Ottawa</em> — one of the world's largest defence &amp; security conferences.</p>
+              <span class="peek-more">Details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
             </div>
-          </article>
+          </a>
 
-          <article class="pub-card glass reveal">
-            <span class="pub-badge alt">Speaking</span>
+          <a class="pub-card glass reveal more-stub" href="/research.html">
+            <span class="pub-badge alt">+3 more</span>
             <div>
-              <h3>Topics I speak and write about</h3>
-              <p class="venue">Edge AI deployment in the real world · LLM inference optimization — quantization,
-                pruning, distillation and custom CUDA/TensorRT kernels · on-device agents and privacy-preserving
-                RAG · Rust vs Python for ML serving.</p>
-              <div class="pub-links">
-                <a href="mailto:thejaskaranbhatia@gmail.com?subject=Speaking%20invitation">Invite me to speak
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a>
-              </div>
+              <h3>Two preprints, speaking topics &amp; the conference photo gallery</h3>
+              <span class="peek-more">View all research &amp; speaking <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
             </div>
-          </article>
+          </a>
         </div>
       </div>
     </section>
@@ -633,31 +462,24 @@
     <!-- ================= PHOTOS ================= -->
     <section id="photos">
       <div class="wrap">
-        <div class="section-head reveal">
-          <span class="eyebrow">Photos</span>
-          <h2 class="section-title">On stage &amp; on the <span class="grad-text">demo floor.</span></h2>
-          <p class="section-sub">Moments from conferences and showcases — presenting Edge AI and LLM work.</p>
+        <div class="section-head head-row reveal">
+          <div>
+            <span class="eyebrow">Photos</span>
+            <h2 class="section-title">On stage &amp; on the <span class="grad-text">demo floor.</span></h2>
+          </div>
+          <a class="head-link" href="/research.html#photos">Full gallery <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
         </div>
 
-        <div class="gallery" data-stagger>
-          <figure class="gallery-item glass reveal">
+        <div class="photo-strip" data-stagger>
+          <a class="gallery-item glass reveal" href="/research.html#photos">
             <img src="/assets/images/conference1.jpeg" alt="Jaskaran presenting at a conference" loading="lazy">
-          </figure>
-          <figure class="gallery-item glass reveal">
-            <img src="/assets/images/conference4.jpg" alt="Jaskaran speaking with attendees at a conference" loading="lazy">
-          </figure>
-          <figure class="gallery-item glass reveal">
+          </a>
+          <a class="gallery-item glass reveal" href="/research.html#photos">
+            <img src="/assets/images/conference4.jpg" alt="Jaskaran speaking with attendees" loading="lazy">
+          </a>
+          <a class="gallery-item glass reveal" href="/research.html#photos">
             <img src="/assets/images/conference3.jpg" alt="Jaskaran demoing at a conference booth" loading="lazy">
-          </figure>
-          <figure class="gallery-item glass reveal">
-            <img src="/assets/images/conference5.JPG" alt="Jaskaran presenting his work" loading="lazy">
-          </figure>
-          <figure class="gallery-item glass reveal">
-            <img src="/assets/images/conference2.jpeg" alt="Jaskaran in discussion at a conference" loading="lazy">
-          </figure>
-          <figure class="gallery-item glass reveal">
-            <img src="/assets/images/conference6.jpg" alt="Jaskaran at a conference showcase" loading="lazy">
-          </figure>
+          </a>
         </div>
       </div>
     </section>
@@ -665,69 +487,23 @@
     <!-- ================= ACHIEVEMENTS ================= -->
     <section id="achievements">
       <div class="wrap">
-        <div class="section-head reveal">
-          <span class="eyebrow">Credentials</span>
-          <h2 class="section-title">Certifications &amp; <span class="grad-text">achievements.</span></h2>
+        <div class="section-head head-row reveal">
+          <div>
+            <span class="eyebrow">Credentials</span>
+            <h2 class="section-title">Certifications &amp; <span class="grad-text">achievements.</span></h2>
+          </div>
+          <a class="head-link" href="/experience.html#achievements">All credentials <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
         </div>
 
-        <div class="ach-grid" data-stagger>
-          <div class="ach-card glass reveal">
-            <div class="a-head">
-              <div class="a-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13 17 22l-5-3-5 3 1.5-9"/></svg>
-              </div>
-              <h3>AWS Certified ×3</h3>
-            </div>
-            <ul>
-              <li><strong>Machine Learning Engineer</strong></li>
-              <li><strong>AI Practitioner</strong></li>
-              <li><strong>Cloud Practitioner</strong></li>
-            </ul>
+        <a class="ach-mini-card glass reveal" href="/experience.html#achievements">
+          <div class="ach-mini">
+            <div class="item"><div class="big">3×</div><div class="small">AWS Certified</div></div>
+            <div class="item"><div class="big">3</div><div class="small">Hackathon wins</div></div>
+            <div class="item"><div class="big">3</div><div class="small">Udacity Nanodegrees</div></div>
+            <div class="item"><div class="big">4+</div><div class="small">Coursera Specializations</div></div>
           </div>
-
-          <div class="ach-card glass reveal">
-            <div class="a-head">
-              <div class="a-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8m-4-4v4M6 3h12v7a6 6 0 0 1-12 0V3Z"/><path d="M6 6H3a2 2 0 0 0 0 4h3m12-4h3a2 2 0 0 1 0 4h-3"/></svg>
-              </div>
-              <h3>Hackathon Wins</h3>
-            </div>
-            <ul>
-              <li><strong>Code For Good</strong> — JP Morgan · Winner</li>
-              <li><strong>Smart India Hackathon</strong> — Runner-up</li>
-              <li><strong>Startup Punjab Hackathon</strong> — Winner</li>
-            </ul>
-          </div>
-
-          <div class="ach-card glass reveal">
-            <div class="a-head">
-              <div class="a-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15Z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>
-              </div>
-              <h3>Udacity Nanodegrees</h3>
-            </div>
-            <ul>
-              <li><strong>Machine Learning Engineer</strong></li>
-              <li><strong>Data Scientist</strong></li>
-              <li><strong>Machine Learning with TensorFlow</strong></li>
-            </ul>
-          </div>
-
-          <div class="ach-card glass reveal">
-            <div class="a-head">
-              <div class="a-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-              </div>
-              <h3>Coursera Specializations</h3>
-            </div>
-            <ul>
-              <li><strong>Deep Learning with PyTorch</strong> — IBM</li>
-              <li><strong>AI in Marketing &amp; Finance</strong> — UPenn</li>
-              <li><strong>NLP</strong> — DeepLearning.AI</li>
-              <li><strong>Algorithmic Toolbox</strong> — UC San Diego</li>
-            </ul>
-          </div>
-        </div>
+          <span class="peek-more">See everything <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+        </a>
       </div>
     </section>
 

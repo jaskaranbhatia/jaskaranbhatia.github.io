@@ -19,17 +19,18 @@ function webglAvailable() {
 if (canvas && webglAvailable()) init();
 
 function init() {
-  const isMobile = window.matchMedia("(max-width: 700px)").matches;
-  const COUNT = isMobile ? 320 : 720;
+  const isMobile = window.matchMedia("(max-width: 899px)").matches;
+  const COUNT = isMobile ? 220 : 720;
   const RADIUS = 9;
-  const LINK_DIST = isMobile ? 2.6 : 2.2;
+  const LINK_DIST = isMobile ? 2.8 : 2.2;
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 100);
-  camera.position.z = 17;
+  const BASE_Z = 23; // further back = smaller, more contained object
+  camera.position.z = BASE_Z;
 
-  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: !isMobile });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2));
 
   // --- particles, distributed in a flattened ellipsoid shell ---
   const positions = new Float32Array(COUNT * 3);
@@ -110,9 +111,10 @@ function init() {
 
   scene.add(new THREE.LineSegments(lGeo, lMat));
 
-  // --- sizing ---
+  // --- sizing (the canvas is sized by CSS, not its parent) ---
   function resize() {
-    const { clientWidth: w, clientHeight: h } = canvas.parentElement;
+    const w = canvas.clientWidth || 1;
+    const h = canvas.clientHeight || 1;
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
@@ -149,9 +151,14 @@ function init() {
     curX += (targetX - curX) * 0.04;
     curY += (targetY - curY) * 0.04;
 
-    scene.rotation.y = time * 0.04 + curX * 0.22;
-    scene.rotation.x = curY * 0.14;
-    camera.position.z = 17 + Math.sin(time * 0.18) * 0.6;
+    // scroll coupling: rotation keeps turning all the way down the page,
+    // while the zoom-out settles after the first viewport
+    const sy = reducedMotion ? 0 : window.scrollY;
+    const zoomY = Math.min(sy, window.innerHeight);
+
+    scene.rotation.y = time * 0.04 + curX * 0.22 + sy * 0.00055;
+    scene.rotation.x = curY * 0.14 + zoomY * 0.0004;
+    camera.position.z = BASE_Z + Math.sin(time * 0.18) * 0.6 + zoomY * 0.006;
 
     renderer.render(scene, camera);
   }

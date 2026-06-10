@@ -44,7 +44,9 @@ const io = new IntersectionObserver(
       }
     }
   },
-  { threshold: 0.12, rootMargin: "0px 0px -36px 0px" }
+  // trigger as soon as the element edges in, so fast scrolling never
+  // lands on a blank card waiting to animate
+  { threshold: 0.01, rootMargin: "0px 0px 8% 0px" }
 );
 revealEls.forEach((el) => io.observe(el));
 
@@ -122,31 +124,26 @@ if (window.matchMedia("(pointer: fine)").matches &&
   });
 }
 
-/* ---------- Hide dock while scrolling down on mobile ---------- */
-const dock = document.querySelector(".dock");
-if (dock && window.matchMedia("(max-width: 899px)").matches) {
-  let lastY = window.scrollY;
-  let idle;
-  window.addEventListener(
-    "scroll",
-    () => {
-      const y = window.scrollY;
-      if (y > lastY + 8 && y > 140) {
-        dock.style.transform = "translateX(-50%) translateY(120%)";
-      } else if (y < lastY - 8) {
-        dock.style.transform = "translateX(-50%)";
-      }
-      lastY = y;
-      clearTimeout(idle);
-      idle = setTimeout(() => { dock.style.transform = "translateX(-50%)"; }, 900);
-    },
-    { passive: true }
-  );
-}
+/* ---------- Mobile "Show more" for long text blocks ---------- */
+document.querySelectorAll("[data-clamp]").forEach((el) => {
+  el.classList.add("clamped");
+  const btn = document.createElement("button");
+  btn.className = "clamp-toggle";
+  btn.setAttribute("aria-expanded", "false");
+  btn.textContent = "Show more";
+  el.insertAdjacentElement("afterend", btn);
+  btn.addEventListener("click", () => {
+    const collapsed = el.classList.toggle("clamped");
+    btn.textContent = collapsed ? "Show more" : "Show less";
+    btn.setAttribute("aria-expanded", String(!collapsed));
+  });
+});
 
-/* ---------- Hero avatar scroll parallax ---------- */
+/* ---------- Hero avatar scroll parallax (desktop only) ---------- */
 const heroAvatar = document.querySelector(".hero-avatar");
-if (heroAvatar && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+if (heroAvatar &&
+    window.matchMedia("(min-width: 900px)").matches &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   let ticking = false;
   window.addEventListener(
     "scroll",

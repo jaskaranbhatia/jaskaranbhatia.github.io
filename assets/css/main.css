@@ -25,6 +25,7 @@
   --on-accent: #061024;
   --tonal: rgba(124, 156, 255, 0.14);
   --tonal-ink: #aebfff;
+  --card-solid: #12151f;
 
   /* motion — Material 3 emphasized easing */
   --ease: cubic-bezier(0.2, 0, 0, 1);
@@ -62,6 +63,7 @@
   --on-accent: #ffffff;
   --tonal: rgba(61, 99, 255, 0.1);
   --tonal-ink: #2c4fd8;
+  --card-solid: #fafbfe;
 }
 
 /* ---------- Reset ---------- */
@@ -70,6 +72,7 @@
 *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
+  overflow-x: clip;
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--dock-h) + 24px);
   -webkit-text-size-adjust: 100%;
@@ -303,6 +306,21 @@ section { padding-block: clamp(4rem, 10vw, 7rem); }
   line-height: 1.12;
 }
 
+.section-title::after {
+  /* draws in when the section header reveals */
+  content: "";
+  display: block;
+  width: 0;
+  height: 3px;
+  margin-top: 12px;
+  border-radius: 2px;
+  background: var(--accent);
+  opacity: 0.9;
+  transition: width 0.8s var(--ease) 0.15s;
+}
+
+.section-head.in .section-title::after { width: 52px; }
+
 .section-sub {
   margin-top: 10px;
   max-width: 56ch;
@@ -393,18 +411,38 @@ section { padding-block: clamp(4rem, 10vw, 7rem); }
   min-height: 100svh;
   display: flex;
   align-items: center;
-  padding-block: clamp(6rem, 14vh, 8rem) clamp(4rem, 10vh, 6rem);
+  padding-block: max(1.5rem, env(safe-area-inset-top)) clamp(3rem, 8vh, 6rem);
+}
+
+@media (min-width: 900px) {
+  /* desktop dock floats at the top — clear it */
+  .hero { padding-top: clamp(6rem, 14vh, 8rem); }
 }
 
 #hero-canvas {
-  position: absolute;
+  /* covers the viewport (no letterbox bands), while the vignette mask
+     shapes the visible constellation into a centered, contained object */
+  position: fixed;
   inset: 0;
   z-index: -1;
+  width: 100%;
+  height: 100%;
   opacity: 0;
+  pointer-events: none;
   transition: opacity 1.4s var(--ease);
+  -webkit-mask-image: radial-gradient(58% 52% at 50% 48%, black 36%, transparent 72%);
+  mask-image: radial-gradient(58% 52% at 50% 48%, black 36%, transparent 72%);
 }
 
-#hero-canvas.ready { opacity: 1; }
+#hero-canvas.ready { opacity: 0.95; }
+
+@media (max-width: 899px) {
+  #hero-canvas {
+    -webkit-mask-image: radial-gradient(80% 48% at 50% 46%, black 38%, transparent 75%);
+    mask-image: radial-gradient(80% 48% at 50% 46%, black 38%, transparent 75%);
+  }
+  #hero-canvas.ready { opacity: 0.8; }
+}
 
 .hero-card {
   padding: clamp(1.6rem, 5vw, 3.4rem);
@@ -1261,6 +1299,268 @@ footer .foot-social {
 }
 
 .article-cta .btn svg { width: 17px; height: 17px; }
+
+
+
+/* ---------- Sub-pages & home peeks ---------- */
+.subpage { padding-top: clamp(3.5rem, 9vh, 5.5rem); }
+
+@media (min-width: 900px) {
+  .subpage { padding-top: clamp(4.5rem, 10vh, 6rem); }
+}
+
+.head-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.head-link {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 16px;
+  margin-bottom: 4px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--tonal-ink);
+  background: var(--tonal);
+  transition: transform var(--t-fast) var(--ease-spring);
+  white-space: nowrap;
+}
+
+.head-link:hover { transform: translateY(-2px); }
+.head-link svg { width: 15px; height: 15px; }
+
+.peek-grid { display: grid; gap: 14px; }
+
+@media (min-width: 760px) { .peek-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.peek-card {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 1.4rem 1.5rem;
+  transition: transform var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease);
+}
+
+.peek-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 46px rgba(2, 4, 12, 0.55), inset 0 1px 0 var(--glass-highlight);
+}
+
+.peek-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.peek-card h3 { font-size: 1.02rem; font-weight: 700; letter-spacing: -0.01em; }
+
+.peek-card .dates {
+  flex: none;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.peek-card .role { color: var(--tonal-ink); font-weight: 600; font-size: 0.85rem; }
+.peek-card .sum { color: var(--ink-2); font-size: 0.87rem; flex: 1; }
+
+.peek-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--tonal-ink);
+}
+
+.peek-more svg {
+  width: 14px; height: 14px;
+  transition: transform var(--t-fast) var(--ease);
+}
+
+.peek-card:hover .peek-more svg { transform: translateX(3px); }
+
+/* photo strip peek */
+.photo-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.photo-strip .gallery-item { margin: 0; }
+
+.photo-strip .gallery-item img {
+  aspect-ratio: 1;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* credentials mini peek */
+.ach-mini-card {
+  display: block;
+  padding: 1.5rem 1.6rem;
+  transition: transform var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease);
+}
+
+.ach-mini-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 46px rgba(2, 4, 12, 0.55), inset 0 1px 0 var(--glass-highlight);
+}
+
+.ach-mini {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 20px;
+}
+
+@media (min-width: 760px) { .ach-mini { grid-template-columns: repeat(4, 1fr); } }
+
+.ach-mini .item .big {
+  font-size: clamp(1.1rem, 3.2vw, 1.35rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+}
+
+.ach-mini .item .small {
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-top: 2px;
+}
+
+.ach-mini-card .peek-more { margin-top: 16px; }
+
+/* "there's more behind this" stub card */
+.more-stub {
+  border-style: dashed;
+  border-color: rgba(138, 163, 255, 0.3);
+  opacity: 0.88;
+}
+
+.more-stub::before { display: none; }
+.more-stub h3 { color: var(--ink-2); font-weight: 600; }
+.more-stub:hover { opacity: 1; transform: translateX(6px); }
+
+@media (max-width: 540px) {
+  .head-row { flex-direction: column; align-items: flex-start; gap: 10px; }
+}
+
+/* ============================================================
+   Mobile performance & density (< 900px)
+   ============================================================ */
+@media (max-width: 899px) {
+  /* Solid card surfaces: per-card backdrop blur is the #1 source of
+     scroll jank on phones. The background is near-solid anyway. */
+  .glass,
+  .btn-glass,
+  .icon-btn,
+  .chip {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: var(--card-solid);
+  }
+
+  /* The floating dock keeps true glass — one small fixed element is cheap
+     and it sells the design language. */
+  .dock {
+    -webkit-backdrop-filter: blur(18px) saturate(170%);
+    backdrop-filter: blur(18px) saturate(170%);
+    background: var(--glass);
+  }
+
+  .chip-tonal { background: var(--tonal); }
+  .theme-btn { background: var(--tonal); }
+  .dock-link.active { background: var(--tonal); }
+
+  /* Static ambience — animating 65vmax blurred blobs costs real GPU time */
+  .ambient .blob { animation: none; filter: blur(70px); }
+  .ambient::after { opacity: 0.35; }
+
+  /* Snappier, earlier reveals so content never "pops in" mid-scroll */
+  .reveal {
+    transform: translateY(14px);
+    transition-duration: 420ms;
+  }
+
+  /* Tighter rhythm */
+  section { padding-block: clamp(3.2rem, 9vw, 5rem); }
+  .section-sub { font-size: 0.92rem; }
+}
+
+/* ---------- Mobile text clamping ("Show more") ---------- */
+.clamp-toggle {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--tonal-ink);
+  background: var(--tonal);
+}
+
+@media (max-width: 759px) {
+  [data-clamp].clamped {
+    position: relative;
+    overflow: hidden;
+    max-height: var(--clamp-h, 12.5em);
+  }
+
+  [data-clamp].clamped::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 4.5em;
+    background: linear-gradient(to bottom, transparent, var(--card-solid));
+    pointer-events: none;
+  }
+
+  .clamp-toggle { display: inline-flex; }
+}
+
+
+/* ---------- Scroll-linked section transitions ---------- */
+/* Compositor-driven (no JS, no main-thread work) where supported;
+   older browsers keep the IntersectionObserver reveals. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    main section:not(.hero) > .wrap {
+      animation: section-enter linear both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 45%;
+    }
+
+    .hero > .wrap {
+      animation: hero-exit linear both;
+      animation-timeline: view();
+      animation-range: exit 10% exit 85%;
+    }
+  }
+}
+
+@keyframes section-enter {
+  from { opacity: 0.35; transform: translateY(36px) scale(0.985); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes hero-exit {
+  to { opacity: 0.12; transform: translateY(-44px) scale(0.95); }
+}
 
 /* ---------- Reveal animations ---------- */
 .reveal {
