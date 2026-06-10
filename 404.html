@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>404 — Jaskaran Singh</title>
+  <meta name="description" content="This page drifted out of orbit.">
+  <meta name="theme-color" content="#07080d">
+  <meta name="robots" content="noindex">
+
+  <link rel="shortcut icon" href="/assets/images/logo.ico" type="image/x-icon">
+
+  <link rel="preload" href="/assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+
+  <style>
+    .lost {
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .lost-card {
+      max-width: 560px;
+      padding: clamp(2.2rem, 7vw, 3.6rem);
+      text-align: center;
+      border-radius: var(--r-xl);
+    }
+
+    .lost-code {
+      font-size: clamp(4.5rem, 18vw, 7rem);
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      line-height: 1;
+      color: var(--accent);
+    }
+
+    .lost-card h1 {
+      margin-top: 0.6rem;
+      font-size: clamp(1.2rem, 4vw, 1.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .lost-card p {
+      margin-top: 0.7rem;
+      color: var(--ink-2);
+      font-size: 0.95rem;
+    }
+
+    .lost-cta {
+      margin-top: 1.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .lost-hint {
+      margin-top: 1.4rem;
+      font-size: 0.78rem;
+      color: var(--ink-3);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="ambient" aria-hidden="true">
+    <div class="blob blob-a"></div>
+    <div class="blob blob-b"></div>
+    <div class="blob blob-c"></div>
+  </div>
+
+  <main class="lost">
+    <div class="lost-card glass">
+      <div class="lost-code">404</div>
+      <h1>This page drifted out of orbit.</h1>
+      <p>The constellation has no node at this address — it may have moved,
+        or it never existed.</p>
+
+      <div class="lost-cta">
+        <a class="btn btn-filled" href="/">
+          Back home
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn-glass" href="/blog.html">Read the blog</a>
+      </div>
+
+      <p class="lost-hint">or press <kbd>⌘</kbd><kbd>K</kbd> to find your way</p>
+    </div>
+  </main>
+
+  <script src="/assets/js/main.js" defer></script>
+</body>
+
+</html>

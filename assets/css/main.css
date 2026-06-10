@@ -3,6 +3,14 @@
    Liquid Glass × Material design system · mobile-first
    ============================================================ */
 
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("/assets/fonts/inter-var.woff2") format("woff2");
+}
+
 /* ---------- Tokens ---------- */
 :root {
   /* surfaces */
@@ -102,7 +110,11 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   z-index: -2;
   overflow: hidden;
   pointer-events: none;
+  /* section hue drift eases like changing room light */
+  transition: filter 1.8s var(--ease);
 }
+
+#hero-canvas { transition: opacity 1.4s var(--ease), filter 1.8s var(--ease); }
 
 .ambient::after {
   /* fine grain so glass has something to refract */
@@ -225,6 +237,26 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   color: var(--tonal-ink);
   background: var(--tonal);
 }
+
+/* sliding liquid-glass highlight (positioned by JS) */
+.dock-pill {
+  position: absolute;
+  z-index: 0;
+  border-radius: 999px;
+  background: var(--glass-strong);
+  border: 1px solid var(--glass-border);
+  box-shadow: inset 0 1px 0 var(--glass-highlight), 0 4px 14px rgba(2, 4, 12, 0.3);
+  pointer-events: none;
+  transition:
+    left 0.55s var(--ease-spring),
+    width 0.55s var(--ease-spring),
+    top 0.3s var(--ease),
+    height 0.3s var(--ease);
+}
+
+.dock.has-pill .dock-link { position: relative; z-index: 1; }
+.dock.has-pill .dock-link.active { background: transparent; }
+.dock.has-pill .dock-link.active svg { filter: drop-shadow(0 0 6px rgba(138, 163, 255, 0.45)); }
 
 .theme-btn {
   display: grid;
@@ -469,14 +501,43 @@ section { padding-block: clamp(4rem, 10vw, 7rem); }
   box-shadow: 0 18px 44px rgba(2, 4, 12, 0.5), inset 0 1px 0 var(--glass-highlight);
   animation: avatar-float 6s var(--ease) infinite alternate;
   will-change: transform;
+  perspective: 1100px;
 }
 
-.hero-avatar img {
-  width: 100%; height: 100%;
+.hero-avatar .photo-clip {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: calc(var(--r-lg) - 4px);
+  overflow: hidden;
+  background: var(--bg-elev);
+  will-change: transform;
+}
+
+.hero-avatar .photo-clip img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: 32% 18%; /* frame the speaker, not the crowd */
-  border-radius: calc(var(--r-lg) - 4px);
-  background: var(--bg-elev);
+  transform-origin: 36% 26%; /* zoom pivots on the speaker */
+  transform: scale(1.4);
+  will-change: transform;
+}
+
+.hero-avatar .photo-glare {
+  /* specular streak that sweeps the photo as you scroll */
+  position: absolute;
+  top: -25%;
+  bottom: -25%;
+  left: 0;
+  width: 46%;
+  background: linear-gradient(105deg,
+    transparent 8%,
+    rgba(255, 255, 255, 0.32) 50%,
+    transparent 92%);
+  transform: translateX(-160%) skewX(-12deg);
+  will-change: transform;
+  pointer-events: none;
 }
 
 .hero-avatar::after {
@@ -1563,6 +1624,145 @@ footer .foot-social {
 
 @keyframes hero-exit {
   to { transform: translateY(-48px) scale(0.95); }
+}
+
+
+/* ---------- Command palette (⌘K) ---------- */
+.cmdk-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  background: rgba(4, 6, 12, 0.45);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  padding: 14vh 16px 0;
+}
+
+.cmdk-overlay.open { display: block; animation: cmdk-fade 160ms var(--ease); }
+
+@keyframes cmdk-fade { from { opacity: 0; } }
+
+.cmdk {
+  max-width: 560px;
+  margin-inline: auto;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  animation: cmdk-pop 220ms var(--ease-spring);
+}
+
+@keyframes cmdk-pop {
+  from { transform: translateY(10px) scale(0.97); opacity: 0; }
+}
+
+.cmdk-input {
+  width: 100%;
+  padding: 17px 20px;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--ink);
+  background: transparent;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.cmdk-input::placeholder { color: var(--ink-3); }
+
+.cmdk-list {
+  max-height: min(46vh, 380px);
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.cmdk-group {
+  padding: 10px 12px 4px;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.cmdk-item {
+  padding: 11px 14px;
+  border-radius: 12px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+
+.cmdk-item.sel {
+  background: var(--tonal);
+  color: var(--tonal-ink);
+}
+
+.cmdk-foot {
+  display: flex;
+  gap: 14px;
+  padding: 10px 16px;
+  border-top: 1px solid var(--glass-border);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--ink-3);
+}
+
+kbd {
+  display: inline-grid;
+  place-items: center;
+  min-width: 19px;
+  height: 19px;
+  padding: 0 5px;
+  margin-right: 4px;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 0.66rem;
+  font-weight: 700;
+  color: var(--ink-2);
+  background: var(--tonal);
+  border: 1px solid var(--glass-border);
+}
+
+.kbd-hint {
+  margin-top: 10px;
+  font-size: 0.72rem;
+  color: var(--ink-3);
+}
+
+/* dim floating spotlight hint, bottom-right corner (desktop only) */
+.spot-hint {
+  display: none;
+  position: fixed;
+  right: 18px;
+  bottom: 16px;
+  z-index: 50;
+  align-items: center;
+  gap: 3px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  opacity: 0.4;
+  transition: opacity var(--t-fast) var(--ease), transform var(--t-fast) var(--ease-spring);
+}
+
+.spot-hint:hover { opacity: 1; transform: translateY(-2px); }
+.spot-hint kbd { margin-right: 0; }
+
+@media (min-width: 900px) {
+  .spot-hint { display: inline-flex; }
+}
+
+@media (max-width: 899px) {
+  /* the palette keeps real glass even on mobile — it's a single overlay */
+  .cmdk {
+    -webkit-backdrop-filter: blur(20px) saturate(170%);
+    backdrop-filter: blur(20px) saturate(170%);
+    background: var(--glass-strong);
+  }
 }
 
 /* ---------- Reveal animations ---------- */

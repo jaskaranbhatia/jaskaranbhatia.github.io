@@ -82,24 +82,64 @@ const cio = new IntersectionObserver(
 );
 counters.forEach((el) => cio.observe(el));
 
-/* ---------- Dock active-link tracking (home page sections) ---------- */
-const sections = document.querySelectorAll("main section[id]");
-const dockLinks = document.querySelectorAll('.dock-link[href*="#"]');
+/* ---------- Liquid-glass dock highlight ---------- */
+/* A glass pill glides between dock links; on the home page a scroll spy
+   hands it from section to section automatically. */
+const dock = document.querySelector(".dock");
+const dockLinks = [...document.querySelectorAll(".dock-link")];
 
-if (sections.length && dockLinks.length) {
-  const sio = new IntersectionObserver(
-    (entries) => {
-      for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
-        dockLinks.forEach((l) => {
-          const hash = l.getAttribute("href").split("#")[1];
-          l.classList.toggle("active", hash === entry.target.id);
-        });
-      }
-    },
-    { rootMargin: "-40% 0px -55% 0px" }
-  );
-  sections.forEach((s) => sio.observe(s));
+if (dock && dockLinks.length) {
+  const pill = document.createElement("span");
+  pill.className = "dock-pill";
+  dock.prepend(pill);
+  dock.classList.add("has-pill");
+
+  let current = document.querySelector(".dock-link.active") || dockLinks[0];
+
+  const movePill = () => {
+    pill.style.left = `${current.offsetLeft}px`;
+    pill.style.top = `${current.offsetTop}px`;
+    pill.style.width = `${current.offsetWidth}px`;
+    pill.style.height = `${current.offsetHeight}px`;
+  };
+
+  const setActive = (link) => {
+    if (!link || link === current) return;
+    current.classList.remove("active");
+    link.classList.add("active");
+    current = link;
+    movePill();
+  };
+
+  requestAnimationFrame(movePill);
+  window.addEventListener("load", movePill);
+  window.addEventListener("resize", movePill);
+
+  // home-page scroll spy: which section is on screen → which dock item glows
+  const NAV_FOR_SECTION = {
+    about: "#top",
+    writing: "/blog.html",
+    experience: "/experience.html",
+    projects: "/projects.html",
+    contact: "#contact",
+  };
+
+  const spied = document.querySelectorAll("main section[id], section.hero");
+  if (spied.length > 1) {
+    const spy = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          const href = entry.target.classList.contains("hero")
+            ? "#top"
+            : NAV_FOR_SECTION[entry.target.id];
+          if (href) setActive(dock.querySelector(`.dock-link[href="${href}"]`));
+        }
+      },
+      { rootMargin: "-45% 0px -50% 0px" }
+    );
+    spied.forEach((s) => spy.observe(s));
+  }
 }
 
 /* ---------- 3D tilt on cards (fine pointers only) ---------- */
@@ -139,33 +179,207 @@ document.querySelectorAll("[data-clamp]").forEach((el) => {
   });
 });
 
-/* ---------- Hero avatar scroll parallax (desktop only) ---------- */
+/* ---------- Hero photo cinematic scroll reveal ---------- */
+/* Scrubbed by scroll: starts zoomed in tight on the speaker, pulls back to
+   reveal the whole conference scene while a light streak sweeps the glass
+   and the frame turns subtly in 3D. */
 const heroAvatar = document.querySelector(".hero-avatar");
-if (heroAvatar &&
-    window.matchMedia("(min-width: 900px)").matches &&
-    !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+const photoClip = document.querySelector(".hero-avatar .photo-clip");
+const photoImg = document.querySelector(".hero-avatar .photo-clip img");
+const photoGlare = document.querySelector(".hero-avatar .photo-glare");
+
+if (photoImg && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   let ticking = false;
+  const easeInOut = (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+
+  const update = () => {
+    const p = Math.min(window.scrollY / (window.innerHeight * 0.8), 1);
+    const e = easeInOut(p);
+    photoImg.style.transform = `scale(${1.4 - 0.4 * e})`;
+    photoGlare.style.transform = `translateX(${-160 + e * 420}%) skewX(-12deg)`;
+    photoClip.style.transform = `rotateY(${e * -10}deg) rotateX(${e * 4}deg)`;
+    heroAvatar.style.translate = `0 ${Math.min(window.scrollY, window.innerHeight) * 0.08}px`;
+    ticking = false;
+  };
+
   window.addEventListener(
     "scroll",
     () => {
       if (ticking) return;
       ticking = true;
-      requestAnimationFrame(() => {
-        const y = window.scrollY;
-        const vh = window.innerHeight;
-        if (y < vh) {
-          const p = y / vh;
-          heroAvatar.style.translate = `0 ${y * 0.18}px`;
-          heroAvatar.style.rotate = `${p * 6}deg`;
-          heroAvatar.style.opacity = `${1 - p * 0.6}`;
-        }
-        ticking = false;
-      });
+      requestAnimationFrame(update);
     },
     { passive: true }
   );
+  update();
+} else if (photoImg) {
+  photoImg.style.transform = "none";
+}
+
+
+/* ---------- Section hue drift ---------- */
+/* The ambient field (and the constellation with it) slowly re-temperatures
+   as each section takes the screen — blue at the top, a teal moment for
+   writing, drifting toward violet by the time you reach contact. */
+const ambientEl = document.querySelector(".ambient");
+const canvasEl = document.getElementById("hero-canvas");
+
+const SECTION_HUES = {
+  hero: 0,
+  about: 8,
+  writing: -26,
+  experience: 14,
+  projects: 32,
+  publications: 46,
+  photos: 60,
+  achievements: 72,
+  contact: 88,
+};
+
+const hueSections = document.querySelectorAll("main section[id], section.hero");
+
+if (ambientEl && hueSections.length > 1) {
+  let currentHue = null;
+
+  const setHue = (h) => {
+    if (h === currentHue) return;
+    currentHue = h;
+    ambientEl.style.filter = `hue-rotate(${h}deg)`;
+    if (canvasEl) canvasEl.style.filter = `hue-rotate(${h}deg)`;
+  };
+
+  const hueSpy = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        const key = entry.target.classList.contains("hero") ? "hero" : entry.target.id;
+        if (key in SECTION_HUES) setHue(SECTION_HUES[key]);
+      }
+    },
+    { rootMargin: "-45% 0px -50% 0px" }
+  );
+  hueSections.forEach((s) => hueSpy.observe(s));
 }
 
 /* ---------- Footer year ---------- */
 const yearEl = document.getElementById("year");
 if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+/* ---------- Command palette (⌘K / Ctrl+K — deliberately low-key) ---------- */
+(() => {
+  const COMMANDS = [
+    { group: "Navigate", label: "Home", hint: "hero about main", run: () => (location.href = "/") },
+    { group: "Navigate", label: "Blog & writing", hint: "articles medium posts", run: () => (location.href = "/blog.html") },
+    { group: "Navigate", label: "Work experience", hint: "jobs j-squared jpmc career", run: () => (location.href = "/experience.html") },
+    { group: "Navigate", label: "Projects", hint: "builds portfolio github", run: () => (location.href = "/projects.html") },
+    { group: "Navigate", label: "Research & speaking", hint: "publications papers talks photos cansec", run: () => (location.href = "/research.html") },
+    { group: "Navigate", label: "Contact", hint: "email reach hire", run: () => (location.href = "/#contact") },
+    { group: "Actions", label: "Download résumé", hint: "cv pdf resume", run: () => (location.href = "/assets/Jaskaran_Singh_Resume.pdf") },
+    { group: "Actions", label: "Email Jaskaran", hint: "mail contact write", run: () => (location.href = "mailto:thejaskaranbhatia@gmail.com") },
+    { group: "Actions", label: "Toggle theme", hint: "dark light mode", run: () => document.querySelector("[data-theme-toggle]")?.click() },
+    { group: "Elsewhere", label: "GitHub", hint: "code repos", run: () => window.open("https://github.com/jaskaranbhatia", "_blank") },
+    { group: "Elsewhere", label: "LinkedIn", hint: "connect profile", run: () => window.open("https://linkedin.com/in/jaskaran-bhatia", "_blank") },
+    { group: "Elsewhere", label: "Medium", hint: "blog follow articles", run: () => window.open("https://medium.com/@jaskaranbhatia", "_blank") },
+    { group: "Read", label: "Rust vs Python for LLM Inference", hint: "article benchmark latest", run: () => (location.href = "/post.html?id=rust-vs-python") },
+    { group: "Read", label: "The Rise of On-Device AI and SLMs", hint: "article edge", run: () => (location.href = "/post.html?id=on-device-slms") },
+    { group: "Read", label: "AI Accelerators: Past, Present, Future", hint: "article hardware", run: () => (location.href = "/post.html?id=ai-accelerators") },
+  ];
+
+  let overlay = null;
+  let selected = 0;
+  let visible = [];
+
+  function build() {
+    overlay = document.createElement("div");
+    overlay.className = "cmdk-overlay";
+    overlay.innerHTML = `
+      <div class="cmdk glass" role="dialog" aria-modal="true" aria-label="Command palette">
+        <input class="cmdk-input" type="text" placeholder="Type a command or search…" autocomplete="off" spellcheck="false">
+        <ul class="cmdk-list" role="listbox"></ul>
+        <div class="cmdk-foot"><kbd>↑↓</kbd> navigate <kbd>↵</kbd> open <kbd>esc</kbd> close</div>
+      </div>`;
+    document.body.appendChild(overlay);
+
+    overlay.addEventListener("pointerdown", (e) => { if (e.target === overlay) close(); });
+    const input = overlay.querySelector(".cmdk-input");
+    input.addEventListener("input", () => render(input.value));
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown") { e.preventDefault(); selected = Math.min(selected + 1, visible.length - 1); paint(); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); selected = Math.max(selected - 1, 0); paint(); }
+      else if (e.key === "Enter" && visible[selected]) { close(); visible[selected].run(); }
+    });
+  }
+
+  function render(q) {
+    const list = overlay.querySelector(".cmdk-list");
+    const needle = (q || "").trim().toLowerCase();
+    visible = COMMANDS.filter((c) =>
+      !needle || (c.label + " " + c.hint + " " + c.group).toLowerCase().includes(needle));
+    selected = 0;
+    let html = "", lastGroup = "";
+    visible.forEach((c, i) => {
+      if (c.group !== lastGroup) { html += `<li class="cmdk-group">${c.group}</li>`; lastGroup = c.group; }
+      html += `<li class="cmdk-item" data-i="${i}" role="option">${c.label}</li>`;
+    });
+    list.innerHTML = html || '<li class="cmdk-group">No matches</li>';
+    list.querySelectorAll(".cmdk-item").forEach((el) => {
+      el.addEventListener("pointerenter", () => { selected = +el.dataset.i; paint(); });
+      el.addEventListener("click", () => { close(); visible[+el.dataset.i].run(); });
+    });
+    paint();
+  }
+
+  function paint() {
+    overlay.querySelectorAll(".cmdk-item").forEach((el) => {
+      const sel = +el.dataset.i === selected;
+      el.classList.toggle("sel", sel);
+      if (sel) el.scrollIntoView({ block: "nearest" });
+    });
+  }
+
+  let lastFocus = null;
+
+  function open() {
+    if (!overlay) build();
+    lastFocus = document.activeElement;
+    overlay.classList.add("open");
+    const input = overlay.querySelector(".cmdk-input");
+    input.value = "";
+    render("");
+    requestAnimationFrame(() => input.focus());
+  }
+
+  function close() {
+    overlay?.classList.remove("open");
+    lastFocus?.focus?.();
+  }
+
+  window.addEventListener("keydown", (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+      e.preventDefault();
+      overlay?.classList.contains("open") ? close() : open();
+    } else if (e.key === "Escape" && overlay?.classList.contains("open")) {
+      close();
+    }
+  });
+
+  // whisper-quiet hints, keyboard devices only
+  if (window.matchMedia("(pointer: fine)").matches) {
+    const foot = document.querySelector("footer .wrap");
+    if (foot) {
+      const hint = document.createElement("p");
+      hint.className = "kbd-hint";
+      hint.innerHTML = "<kbd>\u2318</kbd><kbd>K</kbd> to navigate";
+      foot.appendChild(hint);
+    }
+
+    // dim floating chip in the bottom-right corner — click to open
+    const corner = document.createElement("button");
+    corner.className = "spot-hint";
+    corner.title = "Spotlight — \u2318K";
+    corner.setAttribute("aria-label", "Open spotlight (Cmd+K)");
+    corner.innerHTML = "<kbd>\u2318</kbd><kbd>K</kbd>";
+    document.body.appendChild(corner);
+    corner.addEventListener("click", open);
+  }
+})();

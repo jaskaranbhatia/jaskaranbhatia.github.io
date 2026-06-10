@@ -14,18 +14,50 @@
   <meta property="og:description"
     content="Edge AI · LLM Inferencing · RAG · Agentic AI · Computer Vision · NLP · AWS">
   <meta property="og:url" content="https://thejaskaranbhatia.com">
-  <meta property="og:image" content="https://thejaskaranbhatia.com/assets/images/my-avatar.png">
+  <meta property="og:image" content="https://thejaskaranbhatia.com/assets/images/og-card.png">
+
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Jaskaran Singh — Senior Machine Learning Engineer">
+  <meta name="twitter:description" content="Edge AI · LLM Inferencing · RAG · Agentic AI · Computer Vision · NLP · AWS">
+  <meta name="twitter:image" content="https://thejaskaranbhatia.com/assets/images/og-card.png">
+
+  <link rel="canonical" href="https://thejaskaranbhatia.com/">
 
   <link rel="shortcut icon" href="/assets/images/logo.ico" type="image/x-icon">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" href="/assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
 
   <link rel="stylesheet" href="/assets/css/main.css">
 
   <script type="importmap">
     { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js" } }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Jaskaran Singh",
+    "alternateName": "Jaskaran Bhatia",
+    "url": "https://thejaskaranbhatia.com",
+    "image": "https://thejaskaranbhatia.com/assets/images/og-card.png",
+    "jobTitle": "Senior Machine Learning Engineer",
+    "worksFor": { "@type": "Organization", "name": "J-Squared Technologies" },
+    "alumniOf": [
+      { "@type": "CollegeOrUniversity", "name": "University of Toronto" },
+      { "@type": "CollegeOrUniversity", "name": "Thapar Institute of Engineering & Technology" }
+    ],
+    "knowsAbout": ["Edge AI", "LLM Inference", "Agentic AI", "Computer Vision", "NLP", "AWS", "CUDA", "Rust"],
+    "email": "mailto:thejaskaranbhatia@gmail.com",
+    "address": { "@type": "PostalAddress", "addressLocality": "Toronto", "addressRegion": "ON", "addressCountry": "CA" },
+    "sameAs": [
+      "https://github.com/jaskaranbhatia",
+      "https://linkedin.com/in/jaskaran-bhatia",
+      "https://medium.com/@jaskaranbhatia"
+    ]
+  }
   </script>
 </head>
 
@@ -44,7 +76,7 @@
   <!-- floating glass dock -->
   <nav class="dock glass" aria-label="Primary">
     <a class="dock-brand" href="#top">
-      <img class="mark-img" src="/assets/images/my-avatar.png" alt="Jaskaran Singh">
+      <img class="mark-img" src="/assets/images/my-avatar.webp" alt="Jaskaran Singh">
       <span>Jaskaran</span>
     </a>
 
@@ -104,7 +136,10 @@
             </div>
 
             <figure class="hero-avatar" aria-hidden="false">
-              <img src="/assets/images/present.jpeg" alt="Jaskaran Singh presenting at an AI conference" width="280" height="350">
+              <div class="photo-clip">
+                <img src="/assets/images/present.webp" alt="Jaskaran Singh presenting at an AI conference" width="280" height="350" fetchpriority="high" decoding="async">
+                <span class="photo-glare" aria-hidden="true"></span>
+              </div>
               <figcaption class="hero-avatar-badge">Speaking at AI conferences</figcaption>
             </figure>
           </div>
@@ -379,7 +414,7 @@
           </article>
 
           <article class="proj-card glass reveal" data-tilt>
-            <div class="proj-media"><img src="/assets/images/project-1.jpg" alt="Medical text summarization" loading="lazy"></div>
+            <div class="proj-media"><img src="/assets/images/project-1.webp" alt="Medical text summarization" loading="lazy"></div>
             <div class="proj-body">
               <h3>LLMs for Medical Text Summarization</h3>
               <p>Fine-tuned and benchmarked GPT-3/4, T5, BART and Pegasus on medical summarization — ROUGE,
@@ -395,7 +430,7 @@
           </article>
 
           <article class="proj-card glass reveal" data-tilt>
-            <div class="proj-media"><img src="/assets/images/project-2.jpeg" alt="Medical image enhancement using GANs" loading="lazy"></div>
+            <div class="proj-media"><img src="/assets/images/project-2.webp" alt="Medical image enhancement using GANs" loading="lazy"></div>
             <div class="proj-body">
               <h3>MedGANs — Medical Image Enhancement</h3>
               <p>End-to-end GAN pipeline for medical image denoising and enhancement — published in IJESE
@@ -472,13 +507,13 @@
 
         <div class="photo-strip" data-stagger>
           <a class="gallery-item glass reveal" href="/research.html#photos">
-            <img src="/assets/images/conference1.jpeg" alt="Jaskaran presenting at a conference" loading="lazy">
+            <img src="/assets/images/conference1.webp" alt="Jaskaran presenting at a conference" loading="lazy">
           </a>
           <a class="gallery-item glass reveal" href="/research.html#photos">
-            <img src="/assets/images/conference4.jpg" alt="Jaskaran speaking with attendees" loading="lazy">
+            <img src="/assets/images/conference4.webp" alt="Jaskaran speaking with attendees" loading="lazy">
           </a>
           <a class="gallery-item glass reveal" href="/research.html#photos">
-            <img src="/assets/images/conference3.jpg" alt="Jaskaran demoing at a conference booth" loading="lazy">
+            <img src="/assets/images/conference3.webp" alt="Jaskaran demoing at a conference booth" loading="lazy">
           </a>
         </div>
       </div>

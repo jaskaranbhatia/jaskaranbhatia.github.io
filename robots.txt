@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /post.html
+
+Sitemap: https://thejaskaranbhatia.com/sitemap.xml
