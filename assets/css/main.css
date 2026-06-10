@@ -1553,13 +1553,16 @@ footer .foot-social {
   }
 }
 
+/* transform-only: animating opacity on these wrappers turns them into
+   backdrop roots in Chromium, which kills backdrop-filter (liquid glass)
+   on every card inside them */
 @keyframes section-enter {
-  from { opacity: 0.35; transform: translateY(36px) scale(0.985); }
-  to { opacity: 1; transform: none; }
+  from { transform: translateY(38px) scale(0.982); }
+  to { transform: none; }
 }
 
 @keyframes hero-exit {
-  to { opacity: 0.12; transform: translateY(-44px) scale(0.95); }
+  to { transform: translateY(-48px) scale(0.95); }
 }
 
 /* ---------- Reveal animations ---------- */
