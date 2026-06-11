@@ -1643,8 +1643,12 @@ footer .foot-social {
 
 /* ---------- Blog page hero ---------- */
 .page-hero {
-  padding-top: clamp(7rem, 16vh, 9rem);
+  padding-top: max(2.2rem, env(safe-area-inset-top));
   padding-bottom: clamp(2rem, 5vw, 3rem);
+}
+
+@media (min-width: 900px) {
+  .page-hero { padding-top: clamp(7rem, 16vh, 9rem); }
 }
 
 .page-hero h1 {
@@ -1662,7 +1666,11 @@ footer .foot-social {
 }
 
 /* ---------- Article preview page ---------- */
-.post-page { padding-top: clamp(6.5rem, 14vh, 8.5rem); }
+.post-page { padding-top: max(2.2rem, env(safe-area-inset-top)); }
+
+@media (min-width: 900px) {
+  .post-page { padding-top: clamp(6.5rem, 14vh, 8.5rem); }
+}
 
 .post-back {
   display: inline-flex;
@@ -1757,9 +1765,10 @@ footer .foot-social {
 
 
 /* ---------- Sub-pages & home peeks ---------- */
-.subpage { padding-top: clamp(3.5rem, 9vh, 5.5rem); }
+.subpage { padding-top: max(0.5rem, env(safe-area-inset-top)); }
 
 @media (min-width: 900px) {
+  /* desktop dock floats at the top — clear it */
   .subpage { padding-top: clamp(4.5rem, 10vh, 6rem); }
 }
 
