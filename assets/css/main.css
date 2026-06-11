@@ -650,6 +650,9 @@ section { padding-block: clamp(4rem, 10vw, 7rem); }
   .hero-domains, .hero-eyebrow { justify-content: center; }
   .hero-cta { justify-content: center; }
 
+  /* the social icons join the centered CTA group instead of pinning right */
+  .hero-social { margin-left: 0; width: 100%; justify-content: center; }
+
   /* mobile: the conference photo becomes a quiet glass pill under the copy,
      not a hero-dominating frame */
   .hero-layout { flex-direction: column; gap: 1.2rem; }
@@ -2181,6 +2184,87 @@ kbd {
     -webkit-backdrop-filter: blur(20px) saturate(170%);
     backdrop-filter: blur(20px) saturate(170%);
     background: var(--glass-strong);
+  }
+}
+
+
+/* ============================================================
+   Mobile app-mode for the home page (< 760px)
+   Desktop and sub-pages are untouched — home only (body without .subbg).
+   ============================================================ */
+.tagline-short { display: none; }
+
+@media (max-width: 759px) {
+  /* shorter copy: one-line tagline, no section subtitles on home */
+  .tagline-full { display: none; }
+  .tagline-short { display: inline; }
+  body:not(.subbg) .section-sub { display: none; }
+
+  /* Writing + Projects become horizontal snap shelves — swipe like an app */
+  body:not(.subbg) .blog-grid,
+  body:not(.subbg) .proj-grid {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 80%;
+    gap: 12px;
+    overflow-x: auto;
+    margin-inline: calc(-1 * var(--gutter));
+    padding-inline: var(--gutter);
+    padding-bottom: 8px;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  body:not(.subbg) .blog-grid::-webkit-scrollbar,
+  body:not(.subbg) .proj-grid::-webkit-scrollbar { display: none; }
+
+  body:not(.subbg) .blog-grid > *,
+  body:not(.subbg) .proj-grid > * { scroll-snap-align: center; }
+
+  /* project shelf cards: image + title + links, no paragraph */
+  body:not(.subbg) .proj-body p { display: none; }
+
+  /* Experience peeks collapse into a tappable app list */
+  body:not(.subbg) #experience .peek-grid { gap: 10px; }
+
+  body:not(.subbg) #experience .peek-card {
+    padding: 0.95rem 1.1rem;
+    gap: 3px;
+  }
+
+  body:not(.subbg) #experience .peek-card .sum,
+  body:not(.subbg) #experience .peek-card .chip-row,
+  body:not(.subbg) #experience .peek-card .peek-more { display: none; }
+
+  body:not(.subbg) #experience .peek-top h3 { font-size: 0.95rem; }
+
+  body:not(.subbg) #experience .peek-card .role {
+    padding-left: 44px; /* aligns under the title, clear of the logo */
+    font-size: 0.8rem;
+  }
+
+  /* Publications: badge + title + arrow, no venue line */
+  body:not(.subbg) #publications .pub-card .venue { display: none; }
+  body:not(.subbg) #publications .pub-card { padding: 1.1rem 1.2rem; gap: 10px; }
+  body:not(.subbg) #publications .pub-card h3 { font-size: 0.92rem; }
+  body:not(.subbg) #publications .peek-more { margin-top: 6px; }
+
+  /* Contact: headline + actions, no paragraph */
+  body:not(.subbg) .contact-card > p { display: none; }
+  body:not(.subbg) .contact-cta { margin-top: 1.3rem; }
+
+  /* app-like press feedback on every tappable card */
+  .peek-card:active,
+  .post-card:active,
+  .proj-card:active,
+  .pub-card:active,
+  .method-card:active,
+  .ach-mini-card:active,
+  .gallery-item:active {
+    transform: scale(0.975);
+    transition: transform 120ms var(--ease);
   }
 }
 
