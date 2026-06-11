@@ -1537,6 +1537,90 @@ section { padding-block: clamp(4rem, 10vw, 7rem); }
 .contact-meta span { display: inline-flex; align-items: center; gap: 7px; }
 .contact-meta svg { width: 15px; height: 15px; }
 
+
+/* ---------- Contact page ---------- */
+.method-grid { display: grid; gap: 14px; }
+
+@media (min-width: 700px) { .method-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.method-card {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 1.5rem 1.6rem;
+  transition: transform var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease);
+}
+
+.method-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 46px rgba(2, 4, 12, 0.55), inset 0 1px 0 var(--glass-highlight);
+}
+
+.method-card .m-ico {
+  flex: none;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border-radius: 15px;
+  background: var(--tonal);
+  color: var(--tonal-ink);
+}
+
+.method-card .m-ico svg { width: 21px; height: 21px; }
+
+.method-card h3 { font-size: 1.02rem; font-weight: 700; letter-spacing: -0.01em; }
+.method-card p { color: var(--ink-2); font-size: 0.88rem; margin-top: 4px; }
+.method-card .peek-more { margin-top: 10px; }
+
+.contact-extra {
+  margin-top: 18px;
+  padding: 1.6rem 1.7rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px 28px;
+}
+
+.ce-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+}
+
+.ce-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink-2);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.ce-item svg { width: 16px; height: 16px; color: var(--tonal-ink); }
+
+.ce-open {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ce-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.contact-extra .btn { margin-left: auto; }
+
+@media (max-width: 699px) {
+  .contact-extra { flex-direction: column; align-items: flex-start; }
+  .contact-extra .btn { margin-left: 0; }
+}
+
 /* ---------- Footer ---------- */
 footer {
   padding: 2.2rem 0 calc(var(--dock-h) + 34px);

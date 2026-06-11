@@ -121,7 +121,7 @@ if (dock && dockLinks.length) {
     writing: "/blog.html",
     experience: "/experience.html",
     projects: "/projects.html",
-    contact: "#contact",
+    contact: "/contact.html",
   };
 
   const spied = document.querySelectorAll("main section[id], section.hero");
@@ -277,8 +277,8 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
     { group: "Navigate", label: "Work experience", hint: "jobs j-squared jpmc career", run: () => (location.href = "/experience.html") },
     { group: "Navigate", label: "Projects", hint: "builds portfolio github", run: () => (location.href = "/projects.html") },
     { group: "Navigate", label: "Research & speaking", hint: "publications papers talks photos cansec", run: () => (location.href = "/research.html") },
-    { group: "Navigate", label: "Contact", hint: "email reach hire", run: () => (location.href = "/#contact") },
-    { group: "Actions", label: "Download résumé", hint: "cv pdf resume", run: () => (location.href = "/assets/Jaskaran_Singh_Resume.pdf") },
+    { group: "Navigate", label: "Contact", hint: "email reach hire", run: () => (location.href = "/contact.html") },
+    { group: "Actions", label: "Download resume", hint: "cv pdf resume", run: () => (location.href = "/assets/Jaskaran_Singh_Resume.pdf") },
     { group: "Actions", label: "Email Jaskaran", hint: "mail contact write", run: () => (location.href = "mailto:thejaskaranbhatia@gmail.com") },
     { group: "Actions", label: "Toggle theme", hint: "dark light mode", run: () => document.querySelector("[data-theme-toggle]")?.click() },
     { group: "Elsewhere", label: "GitHub", hint: "code repos", run: () => window.open("https://github.com/jaskaranbhatia", "_blank") },
