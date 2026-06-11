@@ -54,9 +54,14 @@ function init() {
 
     const t = Math.random();
     tmp.copy(t < 0.5 ? cA : cB).lerp(t < 0.5 ? cB : cC, Math.random() * 0.8);
-    colors[i * 3] = tmp.r;
-    colors[i * 3 + 1] = tmp.g;
-    colors[i * 3 + 2] = tmp.b;
+    // vignette baked into the scene: outer particles dim toward the rim so the
+    // constellation fades out without a CSS mask (which breaks Chromium's
+    // backdrop-filter sampling)
+    const rim = (r / RADIUS - 0.45) / 0.55;
+    const dim = 1 - 0.72 * rim * rim;
+    colors[i * 3] = tmp.r * dim;
+    colors[i * 3 + 1] = tmp.g * dim;
+    colors[i * 3 + 2] = tmp.b * dim;
     seeds[i] = Math.random() * Math.PI * 2;
   }
 
@@ -111,6 +116,33 @@ function init() {
 
   scene.add(new THREE.LineSegments(lGeo, lMat));
 
+  // --- scene hue drift (driven by the section spy in main.js) ---
+  const basePointColors = colors.slice();
+  const baseLineColors = Float32Array.from(lineCol);
+  let hueCur = 0;
+  let hueTarget = 0;
+
+  window.__setSceneHue = (deg) => { hueTarget = deg; };
+
+  const hueTmp = new THREE.Color();
+  function applyHue() {
+    const shift = hueCur / 360;
+    const pc = pGeo.attributes.color.array;
+    for (let i = 0; i < basePointColors.length; i += 3) {
+      hueTmp.setRGB(basePointColors[i], basePointColors[i + 1], basePointColors[i + 2]);
+      hueTmp.offsetHSL(shift, 0, 0);
+      pc[i] = hueTmp.r; pc[i + 1] = hueTmp.g; pc[i + 2] = hueTmp.b;
+    }
+    pGeo.attributes.color.needsUpdate = true;
+    const lc = lGeo.attributes.color.array;
+    for (let i = 0; i < baseLineColors.length; i += 3) {
+      hueTmp.setRGB(baseLineColors[i], baseLineColors[i + 1], baseLineColors[i + 2]);
+      hueTmp.offsetHSL(shift, 0, 0);
+      lc[i] = hueTmp.r; lc[i + 1] = hueTmp.g; lc[i + 2] = hueTmp.b;
+    }
+    lGeo.attributes.color.needsUpdate = true;
+  }
+
   // --- sizing (the canvas is sized by CSS, not its parent) ---
   function resize() {
     const w = canvas.clientWidth || 1;
@@ -150,6 +182,11 @@ function init() {
 
     curX += (targetX - curX) * 0.04;
     curY += (targetY - curY) * 0.04;
+
+    if (Math.abs(hueTarget - hueCur) > 0.5) {
+      hueCur += (hueTarget - hueCur) * 0.05;
+      applyHue();
+    }
 
     // scroll coupling: rotation keeps turning all the way down the page,
     // while the zoom-out settles after the first viewport

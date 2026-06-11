@@ -188,7 +188,9 @@ const photoClip = document.querySelector(".hero-avatar .photo-clip");
 const photoImg = document.querySelector(".hero-avatar .photo-clip img");
 const photoGlare = document.querySelector(".hero-avatar .photo-glare");
 
-if (photoImg && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+if (photoImg &&
+    window.matchMedia("(min-width: 760px)").matches &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   let ticking = false;
   const easeInOut = (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
 
@@ -244,8 +246,10 @@ if (ambientEl && hueSections.length > 1) {
   const setHue = (h) => {
     if (h === currentHue) return;
     currentHue = h;
-    ambientEl.style.filter = `hue-rotate(${h}deg)`;
-    if (canvasEl) canvasEl.style.filter = `hue-rotate(${h}deg)`;
+    // blobs drift via their own filter; the constellation re-colors its
+    // vertices in WebGL — no CSS filter ever sits over the canvas
+    document.documentElement.style.setProperty("--drift-hue", `${h}deg`);
+    window.__setSceneHue?.(h);
   };
 
   const hueSpy = new IntersectionObserver(
